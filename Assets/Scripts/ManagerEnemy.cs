@@ -39,7 +39,7 @@ public class ManagerEnemy : MonoBehaviour
         {
             EnemyAttack();
         }
-        else if (enemyAttack && enemiesInScene < (maxEnemies - 1))
+        else if (enemyAttack && enemiesInScene < (maxEnemies - 3))
         {
             enemyAttack = false;
         }
@@ -82,16 +82,17 @@ public class ManagerEnemy : MonoBehaviour
     public void EnemyAttack()
     {
         if (enemiesInScene == 0) return;
-        
+    
         int randomEnemyIndex1 = Random.Range(0, enemiesInScene);
         int randomEnemyIndex2 = Random.Range(0, enemiesInScene);
-        
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         EnemyBehaviour enemy1 = enemies[randomEnemyIndex1].GetComponent<EnemyBehaviour>();
         EnemyBehaviour enemy2 = enemies[randomEnemyIndex2].GetComponent<EnemyBehaviour>();
-        
-        enemy1.isAttackingPlayer = true;
-        enemy2.isAttackingPlayer = true;
+    
+        // Usar el método en lugar de asignar directamente
+        enemy1.StartAttackingPlayer();
+        enemy2.StartAttackingPlayer();
         enemyAttack = true;
     }
     

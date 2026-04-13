@@ -17,9 +17,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private int randomIndex;
     [SerializeField] private bool endDistination = false;
     
+    [Header("Empuje")]
+    public float fuerzaEmpuje = 30f;
+    
     // Variables privadas
-    private bool attackPlayer = false;
+    private bool isAttacking = false;
+    private bool collisionPlayer = false;
     int example = 10;
+    private Rigidbody rbPlayer;
     
     void Awake()
     {
@@ -30,22 +35,36 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (waypoints.Length > 0)
             randomIndex = Random.Range(0, waypoints.Length);
+            
+        // Obtener el Rigidbody del jugador
+        if (player != null)
+            rbPlayer = player.GetComponent<Rigidbody>();
     }
     
     void Update()
     {
-        if (isAttackingPlayer && player != null && attackPlayer == false)
+        if (isAttackingPlayer && player != null)
         {
-            StartCoroutine(AttackPlayer());
+            if (collisionPlayer && !isAttacking)
+            {
+                StartCoroutine(AttackPlayer());
+            }
+            else if (!collisionPlayer && !isAttacking)
+            {
+                PathFindingPlayer();
+            }
         }
-        if (!endDistination && !isAttackingPlayer)
+        if (!isAttackingPlayer)
         {
-            PathFindingFarm();
-        }
-        else if (endDistination && !isAttackingPlayer)
-        {
-            isAttackingFarm = true;
-            StartCoroutine(AttackFarm());
+            if (!endDistination)
+            {
+                PathFindingFarm();
+            }
+            else if (endDistination && !isAttackingFarm)
+            {
+                isAttackingFarm = true;
+                StartCoroutine(AttackFarm());
+            }
         }
     }
     
@@ -55,42 +74,72 @@ public class EnemyBehaviour : MonoBehaviour
         {
             endDistination = true;
         }
+        if (other.CompareTag("Player"))
+        {
+            collisionPlayer = true;
+            if (agent != null) agent.isStopped = true;
+        }
+    }
+    
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            collisionPlayer = false;
+            if (agent != null)
+                agent.isStopped = false;
+        }
     }
     
     void PathFindingFarm()
     {
         if (waypoints.Length > 0 && randomIndex < waypoints.Length)
+        {
             agent.SetDestination(waypoints[randomIndex].transform.position);
+        }
         endDistination = true;
     }
     
     void PathFindingPlayer()
     {
-        if (player != null)
+        if (player != null && agent != null)
+        {
+            agent.isStopped = false;
             agent.SetDestination(player.transform.position);
+        }
     }
     
     IEnumerator AttackPlayer()
     {
-        while (isAttackingPlayer && player != null && !isAttackingFarm)
+        isAttacking = true;
+        
+        while (isAttackingPlayer && player != null && collisionPlayer)
         {
-            PathFindingPlayer();
-            //Access the life variable of the other script, and subtract the damage.
-            example/*lifePlayer*/ = example/*lifePlayer*/ - example/*damage*/;
-            //Animation of the attack.
-            attackPlayer = true;
+            if (agent != null) agent.isStopped = true;
+            
+            //empujar al jugador
+            if (rbPlayer != null)
+            {
+                Vector3 direccionAlJugador = player.transform.position - transform.position;
+                direccionAlJugador.Normalize();
+                
+                Vector3 direccionEmpuje = direccionAlJugador;
+                
+                rbPlayer.AddForce(direccionEmpuje * fuerzaEmpuje, ForceMode.Impulse);
+            }
+            
             yield return new WaitForSeconds(2f);
-            attackPlayer = false;
         }
+
+        isAttacking = false;
+        if (agent != null) agent.isStopped = false;
     }
     
     IEnumerator AttackFarm()
     {
         while (isAttackingFarm && !isAttackingPlayer)
         {
-            //Access the life variable of the other script, and subtract the damage.
             example/*lifeFarm*/ = example/*lifeFarm*/ - example/*damage*/;
-            //Animation of the attack.
             yield return new WaitForSeconds(2f);
         }
     }
@@ -100,5 +149,15 @@ public class EnemyBehaviour : MonoBehaviour
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+    }
+    
+    public void StartAttackingPlayer()
+    {
+        if (agent != null) agent.stoppingDistance = 0f;
+        isAttackingFarm = false;
+        endDistination = false;
+        isAttackingPlayer = true;
+        isAttacking = false;
+        collisionPlayer = false;
     }
 }
