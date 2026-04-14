@@ -9,14 +9,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform visual;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Animator animator;
 
-    public float speed;
+    public float speed; 
    
     [Header("Rotación")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float rotationSpeed = 12f;
 
     private InputAction moveAction;
+
+    private Vector3 currentMoveDirection;
+
 
     void Awake()
     {
@@ -33,6 +37,15 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+        Move();
+        rotateMouse();
+        UpdateAnimations();
+
+    }
+
+    private void Move()
     {
         //leemos el input del teclado
         Vector2 input = moveAction.ReadValue<Vector2>();
@@ -59,14 +72,13 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection.Normalize();
         }
+        currentMoveDirection = moveDirection;
             
 
-            // Movimiento en espacio mundo
+           
         transform.position += moveDirection * speed * Time.deltaTime;
-
-        rotateMouse();
-
     }
+
 
     private void rotateMouse()
     {
@@ -88,4 +100,46 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+    
+    private void UpdateAnimations()
+    {
+        // 1. Si no hay movimiento → Idle
+        if (currentMoveDirection.sqrMagnitude < 0.001f)
+        {
+            animator.SetFloat("MoveSigned", 0f, 0.1f, Time.deltaTime);
+            return;
+        }
+
+        // 2. Dirección hacia donde mira el personaje
+        Vector3 forward = visual.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        // 3. Dirección de movimiento
+        Vector3 moveDir = currentMoveDirection;
+        moveDir.y = 0f;
+        moveDir.Normalize();
+
+        // 4. Comparación clave
+        float dot = Vector3.Dot(forward, moveDir);
+
+        // 5. Decisión de animación
+        if (dot > 0.2f)
+        {
+            // Avanza
+            animator.SetFloat("MoveSigned", 1f, 0.1f, Time.deltaTime);
+        }
+        else if (dot < -0.2f)
+        {
+            // Retrocede
+            animator.SetFloat("MoveSigned", -1f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            // Movimiento lateral → por ahora lo tratamos como forward
+            animator.SetFloat("MoveSigned", 1f, 0.1f, Time.deltaTime);
+        }
+    }
+
 }
