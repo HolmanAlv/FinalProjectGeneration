@@ -3,23 +3,45 @@ using UnityEngine.UI;
 
 public class LifeBarEnemy : MonoBehaviour
 {
-    public Camera mainCamera;//para la rotacion
+    public GameObject enemyHeader;
+    public Canvas canvas;
+    public Camera mainCamera;
     public Image lifeBar;
     public float maxHelth = 100f;
     public float currentHelth = 100f;
+    public bool isVisible = true;
 
     void Start()
     {
-        if (mainCamera == null) mainCamera = Camera.main; //rotacion
+        if (mainCamera == null) mainCamera = Camera.main;
     }
     void Update()
     {
-        lifeBar.fillAmount = currentHelth / maxHelth;
+        if (isVisible)
+        {
+            lifeBar.fillAmount = currentHelth / maxHelth;
+        }
+        if (currentHelth <= 0)
+        {
+            Destroy(enemyHeader);
+        }
     }
-    void LateUpdate() //rotacion
+
+    void OnBecameInvisible()
     {
-        Vector3 direction = mainCamera.transform.position - transform.position;
-        direction.y = 0;
-        transform.forward = direction;
+        isVisible = false;
+        if (canvas != null && canvas.gameObject != null) 
+        {
+            canvas.gameObject.SetActive(false);
+        }
+    }
+
+    void OnBecameVisible()
+    {
+        isVisible = true;
+        if (canvas != null && canvas.gameObject != null)
+        {
+            canvas.gameObject.SetActive(true);
+        }
     }
 }

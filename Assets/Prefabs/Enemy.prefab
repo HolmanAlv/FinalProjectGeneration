@@ -115,10 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c4fb92625d660488f4e78d33c075ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeBarEnemy
+  enemyHeader: {fileID: 3744498468758622813}
+  canvas: {fileID: 1880112965036520318}
   mainCamera: {fileID: 0}
   lifeBar: {fileID: 9158512483040661903}
   maxHelth: 100
   currentHelth: 100
+  isVisible: 1
 --- !u!1 &2378607892347705513
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +213,7 @@ GameObject:
   - component: {fileID: 7441937678705154058}
   - component: {fileID: 816324561524614974}
   - component: {fileID: 7100262549980497227}
+  - component: {fileID: 8838384113783860049}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -378,6 +382,7 @@ MonoBehaviour:
   player: {fileID: 0}
   waypoints:
   - {fileID: 0}
+  anim: {fileID: 8838384113783860049}
   isAttackingPlayer: 0
   isAttackingFarm: 0
   agent: {fileID: 7441937678705154058}
@@ -405,6 +410,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &8838384113783860049
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744498468758622813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e29bed4197d5974ca859dde391504a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4556264189693548975
 GameObject:
   m_ObjectHideFlags: 0

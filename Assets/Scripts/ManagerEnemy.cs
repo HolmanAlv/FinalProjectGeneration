@@ -1,74 +1,74 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ManagerEnemy : MonoBehaviour
 {
-    [Header("=== CONFIGURACIÓN DE SPAWN ===")]
-    public GameObject enemyPrefab;
-    public GameObject[] spawnPoints;
-    public float radioSpawn = 5f;
+#region Variables
+
+
+    #region Configuración de Spawn
+
+        [Header("=== CONFIGURACIÓN DE SPAWN ===")]
+        public GameObject enemyPrefab;
+        public GameObject[] spawnPoints;
+        public float radioSpawn = 5f;
+
+    #endregion
+
+    #region Estadísticas del Juego
+
+        [Header("=== ESTADÍSTICAS DEL JUEGO ===")]
+        public int maxEnemies = 10;
+        public float enemySpeed = 4f;
+        public float spawnInterval = 2f;
     
-    [Header("=== ESTADÍSTICAS DEL JUEGO ===")]
-    public int maxEnemies = 10;
-    public float enemySpeed = 4f;
-    public float spawnInterval = 2f;
+    #endregion
     
-    [Header("=== LÍMITES MÁXIMOS ===")]
-    public int topeMaxEnemies = 100;
-    public float topeMaxSpeed = 15f;
-    public float topeMinSpawnTime = 0.3f;
+    #region Límites Máximos
+
+        [Header("=== LÍMITES MÁXIMOS ===")]
+        public int topeMaxEnemies = 100;
+        public float topeMaxSpeed = 15f;
+        public float topeMinSpawnTime = 0.3f;
     
-    [Header("=== INCREMENTOS PROGRESIVOS (Debug) ===")]
-    [SerializeField] private float incrementoEnemies = 14f;
-    [SerializeField] private float incrementoSpeed = 1.5f;
-    [SerializeField] private float incrementoSpawn = -0.3f;
-    [SerializeField] private float factorReduccion = 0.80f;
+    #endregion
+
+    #region Incrementos Progresivos
+
+        [Header("=== INCREMENTOS PROGRESIVOS (Debug) ===")]
+        [SerializeField] private float incrementoEnemies = 14f;
+        [SerializeField] private float incrementoSpeed = 1.5f;
+        [SerializeField] private float incrementoSpawn = -0.3f;
+        [SerializeField] private float factorReduccion = 0.80f;
     
+    #endregion
     // Variables privadas
-    private bool enemyAttack = false;
-    private int enemiesInScene = 0;
+    #region Variable privadas
+
+        private bool enemyAttack = false;
+        private int enemiesInScene = 0;
+        private List<GameObject> enemiesList = new List<GameObject>();
+    
+    #endregion
+
+
+#endregion
+
+
+#region Metodos Spawn, Ataque, Contador enemigos    
+    #region Metodos Spwan
     
     void Awake()
     {
         StartCoroutine(SpawnRoutine());
     }
-    
-    void Update()
-    {
-        if (!enemyAttack && enemiesInScene == maxEnemies)
-        {
-            EnemyAttack();
-        }
-        else if (enemyAttack && enemiesInScene < (maxEnemies - 3))
-        {
-            enemyAttack = false;
-        }
-    }
-    
-    void SpawnEnemy()
-    {
-        if (spawnPoints.Length == 0) return;
-        
-        int spawnRandom = Random.Range(0, spawnPoints.Length);
-        Vector3 spawnPosition = spawnPoints[spawnRandom].transform.position;
-        float randomX = spawnPosition.x + Random.Range(-radioSpawn, radioSpawn);
-        float randomZ = spawnPosition.z + Random.Range(-radioSpawn, radioSpawn);
-        
-        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randomX, 0, randomZ), Quaternion.identity);
-        ApplySpeedToEnemy(newEnemy);
-    }
-    
-    void ApplySpeedToEnemy(GameObject enemy)
-    {
-        UnityEngine.AI.NavMeshAgent agent = enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        if (agent != null) agent.speed = enemySpeed;
-    }
-    
+
     IEnumerator SpawnRoutine()
     {
         while (true)
         {
-            enemiesInScene = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            enemiesInScene = enemiesList.Count;
             
             if (enemiesInScene < maxEnemies)
             {
@@ -78,73 +78,149 @@ public class ManagerEnemy : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-    
-    public void EnemyAttack()
-    {
-        if (enemiesInScene == 0) return;
-    
-        int randomEnemyIndex1 = Random.Range(0, enemiesInScene);
-        int randomEnemyIndex2 = Random.Range(0, enemiesInScene);
-
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemyBehaviour enemy1 = enemies[randomEnemyIndex1].GetComponent<EnemyBehaviour>();
-        EnemyBehaviour enemy2 = enemies[randomEnemyIndex2].GetComponent<EnemyBehaviour>();
-    
-        // Usar el método en lugar de asignar directamente
-        enemy1.StartAttackingPlayer();
-        enemy2.StartAttackingPlayer();
-        enemyAttack = true;
-    }
-    
-    [ContextMenu("▲ Aumentar Dificultad")]
-    public void AumentarDificultad()
-    {
-        AumentarLimiteEnemigos();
-        AumentarVelocidadEnemigos();
-        ReducirTiempoSpawn();
-    }
-    
-    [ContextMenu("▲ Aumentar solo Límite de Enemigos")]
-    public void AumentarLimiteEnemigos()
-    {
-        int sumar = Mathf.Max(1, Mathf.RoundToInt(incrementoEnemies));
-        maxEnemies = Mathf.Min(maxEnemies + sumar, topeMaxEnemies);
-        incrementoEnemies *= factorReduccion;
-    }
-    
-    [ContextMenu("▲ Aumentar Velocidad de Enemigos")]
-    public void AumentarVelocidadEnemigos()
-    {
-        enemySpeed = Mathf.Min(enemySpeed + incrementoSpeed, topeMaxSpeed);
-        incrementoSpeed *= factorReduccion;
-        UpdateAllEnemiesSpeed();
-    }
-    
-    [ContextMenu("▼ Reducir Tiempo de Spawn")]
-    public void ReducirTiempoSpawn()
-    {
-        spawnInterval = Mathf.Max(spawnInterval - Mathf.Abs(incrementoSpawn), topeMinSpawnTime);
-        incrementoSpawn *= factorReduccion;
-    }
-    
-    void UpdateAllEnemiesSpeed()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
+        void SpawnEnemy()
         {
-            ApplySpeedToEnemy(enemy);
+            if (spawnPoints.Length == 0) return;
+        
+            int spawnRandom = Random.Range(0, spawnPoints.Length);
+            Vector3 spawnPosition = spawnPoints[spawnRandom].transform.position;
+            float randomX = spawnPosition.x + Random.Range(-radioSpawn, radioSpawn);
+            float randomZ = spawnPosition.z + Random.Range(-radioSpawn, radioSpawn);
+        
+            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randomX, 0, randomZ), Quaternion.identity);
+            enemiesList.Add(newEnemy);
+            ApplySpeedToEnemy(newEnemy);
         }
-    }
+
+    #endregion
+    #region Metodos atacar al jugador
+
+        void Update()
+        {
+            if (!enemyAttack && enemiesInScene == maxEnemies)
+            {
+                EnemyAttack();
+            }
+            else if (enemyAttack && enemiesInScene < (maxEnemies - 3))
+            {
+                enemyAttack = false;
+            }
+        }
+        public void EnemyAttack()
+        {
+            if (enemiesInScene == 0) return;
     
-    [ContextMenu("⟳ Resetear Todo")]
-    public void ResetearTodo()
+            int randomEnemyIndex1 = Random.Range(0, enemiesInScene);
+            int randomEnemyIndex2 = Random.Range(0, enemiesInScene);
+
+            EnemyBehaviour enemy1 = enemiesList[randomEnemyIndex1].GetComponent<EnemyBehaviour>();
+            EnemyBehaviour enemy2 = enemiesList[randomEnemyIndex2].GetComponent<EnemyBehaviour>();
+    
+            enemy1.StartAttackingPlayer();
+            enemy2.StartAttackingPlayer();
+            enemyAttack = true;
+        }
+
+    #endregion
+    
+    public void RemoveEnemy(GameObject enemy)
     {
-        maxEnemies = 10;
-        enemySpeed = 4f;
-        spawnInterval = 2f;
-        incrementoEnemies = 14f;
-        incrementoSpeed = 1.5f;
-        incrementoSpawn = -0.3f;
-        UpdateAllEnemiesSpeed();
+        enemiesList.Remove(enemy);
+        enemiesInScene = enemiesList.Count;
     }
+
+#endregion    
+
+
+#region Metodos para configurar la dificultad del juego
+
+
+    #region Metodo para actualizar velocidad de enemigos
+        
+        void ApplySpeedToEnemy(GameObject enemy)
+        {
+            UnityEngine.AI.NavMeshAgent agent = enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null) agent.speed = enemySpeed;
+        }
+    
+    #endregion    
+    
+    #region Aumento de Dificultad
+
+        [ContextMenu("▲ Aumentar Dificultad")]
+        public void AumentarDificultad()
+        {
+            AumentarLimiteEnemigos();
+            AumentarVelocidadEnemigos();
+            ReducirTiempoSpawn();
+        }
+
+    #endregion
+
+    #region Aumentar limite de enemigos
+    
+        [ContextMenu("▲ Aumentar solo Límite de Enemigos")]
+        public void AumentarLimiteEnemigos()
+        {
+            int sumar = Mathf.Max(1, Mathf.RoundToInt(incrementoEnemies));
+            maxEnemies = Mathf.Min(maxEnemies + sumar, topeMaxEnemies);
+            incrementoEnemies *= factorReduccion;
+        }
+
+    #endregion
+    
+    #region Aumentar velocidad de enemigos
+        
+        [ContextMenu("▲ Aumentar Velocidad de Enemigos")]
+        public void AumentarVelocidadEnemigos()
+        {
+            enemySpeed = Mathf.Min(enemySpeed + incrementoSpeed, topeMaxSpeed);
+            incrementoSpeed *= factorReduccion;
+            UpdateAllEnemiesSpeed();
+        }
+
+    #endregion
+
+    #region Reducir tiempo de spawn
+
+        [ContextMenu("▼ Reducir Tiempo de Spawn")]
+        public void ReducirTiempoSpawn()
+        {
+            spawnInterval = Mathf.Max(spawnInterval - Mathf.Abs(incrementoSpawn), topeMinSpawnTime);
+            incrementoSpawn *= factorReduccion;
+        }
+    
+    #endregion
+    
+    #region Actualizar velocidad de enemigos en escena
+    
+        void UpdateAllEnemiesSpeed()
+        {
+            foreach (GameObject enemy in enemiesList)
+            {
+                ApplySpeedToEnemy(enemy);
+            }
+        }
+    
+    #endregion
+
+    #region Resetear todas las configuraciones a valores iniciales
+
+        [ContextMenu("⟳ Resetear Todo")]
+        public void ResetearTodo()
+        {
+            maxEnemies = 10;
+            enemySpeed = 4f;
+            spawnInterval = 2f;
+            incrementoEnemies = 14f;
+            incrementoSpeed = 1.5f;
+            incrementoSpawn = -0.3f;
+            UpdateAllEnemiesSpeed();
+        }
+
+    #endregion    
+
+
+
+#endregion
 }

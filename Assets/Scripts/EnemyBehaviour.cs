@@ -4,43 +4,61 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    #region Variables
+
+    #region Referencias
     [Header("Referencias")]
     public GameObject player;
     public GameObject[] waypoints;
-    
+    public Animator anim;
+    #endregion
+
+    #region Estados
     [Header("Estados")]
     public bool isAttackingPlayer = false;
     public bool isAttackingFarm = false;
-    
+    #endregion
+
+    #region Configuración (Debug)
     [Header("Configuración (Debug)")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private int randomIndex;
     [SerializeField] private bool endDistination = false;
-    
+    #endregion
+
+    #region Empuje
     [Header("Empuje")]
     public float fuerzaEmpuje = 30f;
-    
-    // Variables privadas
+    #endregion
+
+    #region Variables Privadas
     private bool isAttacking = false;
     private bool collisionPlayer = false;
-    int example = 10;
+    private bool isVisible = true;
+    private int example = 10;
     private Rigidbody rbPlayer;
-    
+    #endregion
+
+    #endregion
+
+    #region Métodos Principales
+
     void Awake()
     {
         FindObjects();
     }
-    
+
     void Start()
     {
         if (waypoints.Length > 0)
             randomIndex = Random.Range(0, waypoints.Length);
-            
-        // Obtener el Rigidbody del jugador
+
         if (player != null)
             rbPlayer = player.GetComponent<Rigidbody>();
+
+        StartCoroutine(UpdateVisibilityRoutine());
     }
-    
+
     void Update()
     {
         if (isAttackingPlayer && player != null)
@@ -54,6 +72,7 @@ public class EnemyBehaviour : MonoBehaviour
                 PathFindingPlayer();
             }
         }
+
         if (!isAttackingPlayer)
         {
             if (!endDistination)
@@ -67,7 +86,11 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
     }
-    
+
+    #endregion
+
+    #region Trigger Events
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Farm"))
@@ -80,7 +103,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (agent != null) agent.isStopped = true;
         }
     }
-    
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -90,7 +113,11 @@ public class EnemyBehaviour : MonoBehaviour
                 agent.isStopped = false;
         }
     }
-    
+
+    #endregion
+
+    #region Pathfinding
+
     void PathFindingFarm()
     {
         if (waypoints.Length > 0 && randomIndex < waypoints.Length)
@@ -99,7 +126,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         endDistination = true;
     }
-    
+
     void PathFindingPlayer()
     {
         if (player != null && agent != null)
@@ -108,33 +135,34 @@ public class EnemyBehaviour : MonoBehaviour
             agent.SetDestination(player.transform.position);
         }
     }
-    
+
+    #endregion
+
+    #region Ataques
+
     IEnumerator AttackPlayer()
     {
         isAttacking = true;
-        
+
         while (isAttackingPlayer && player != null && collisionPlayer)
         {
             if (agent != null) agent.isStopped = true;
-            
-            //empujar al jugador
+
             if (rbPlayer != null)
             {
                 Vector3 direccionAlJugador = player.transform.position - transform.position;
                 direccionAlJugador.Normalize();
-                
                 Vector3 direccionEmpuje = direccionAlJugador;
-                
                 rbPlayer.AddForce(direccionEmpuje * fuerzaEmpuje, ForceMode.Impulse);
             }
-            
+
             yield return new WaitForSeconds(2f);
         }
 
         isAttacking = false;
         if (agent != null) agent.isStopped = false;
     }
-    
+
     IEnumerator AttackFarm()
     {
         while (isAttackingFarm && !isAttackingPlayer)
@@ -143,14 +171,63 @@ public class EnemyBehaviour : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
     }
-    
+
+    #endregion
+
+    #region Visibilidad
+
+    IEnumerator UpdateVisibilityRoutine()
+    {
+        while (true)
+        {
+            Camera mainCamera = Camera.main;
+
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer == null)
+            {
+                Renderer[] renderers = GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
+                    renderer = renderers[0];
+            }
+
+            if (renderer != null && mainCamera != null)
+            {
+                bool visibleNow = GeometryUtility.TestPlanesAABB(
+                    GeometryUtility.CalculateFrustumPlanes(mainCamera),
+                    renderer.bounds
+                );
+
+                if (visibleNow != isVisible)
+                {
+                    isVisible = visibleNow;
+                    SetRenderersActive(visibleNow);
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    private void SetRenderersActive(bool active)
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            if (r != null) r.enabled = active;
+        }
+    }
+
+    #endregion
+
+    #region Métodos Públicos
+
     public void FindObjects()
     {
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
     }
-    
+
     public void StartAttackingPlayer()
     {
         if (agent != null) agent.stoppingDistance = 0f;
@@ -160,4 +237,16 @@ public class EnemyBehaviour : MonoBehaviour
         isAttacking = false;
         collisionPlayer = false;
     }
+
+    #endregion
+
+    #region Destrucción
+
+    void OnDestroy()
+    {
+        ManagerEnemy manager = FindObjectOfType<ManagerEnemy>();
+        if (manager != null) manager.RemoveEnemy(gameObject);
+    }
+
+    #endregion
 }
