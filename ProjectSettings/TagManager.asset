@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Farm
-  - Ground
+  - Arma
   layers:
   - Default
   - TransparentFX

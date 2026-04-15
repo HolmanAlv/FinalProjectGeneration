@@ -12,12 +12,17 @@ public class PlayerMove2 : MonoBehaviour
     
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Animator animator;
+    
 
     private InputAction moveAction;
+    private InputAction AttackAction;
 
     void Awake()
     {
         moveAction = playerInput.actions["Move"];
+        AttackAction = playerInput.actions["Attack"];
+            
+        
     }
     void Start()
     {
@@ -46,6 +51,8 @@ public class PlayerMove2 : MonoBehaviour
         }
 
         Animations(input);
+        Attack();
+        
 
     }
 
@@ -60,6 +67,14 @@ public class PlayerMove2 : MonoBehaviour
         {
             // Hay input → Run
             animator.SetFloat("MoveAmount", 1f, 0.1f, Time.deltaTime);
+        }
+    }
+
+    private void Attack ()
+    {
+        if (AttackAction.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Attack");
         }
     }
 }
