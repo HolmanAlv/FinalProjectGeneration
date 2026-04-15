@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
   damage: 1
   structure: {fileID: 0}
-  player: {fileID: 8969020964370270466, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
+  player: {fileID: 3005722815278357125, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
   waypoints:
   - {fileID: 0}
   anim: {fileID: 8838384113783860049}
