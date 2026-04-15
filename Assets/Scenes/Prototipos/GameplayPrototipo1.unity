@@ -1575,6 +1575,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7605928481503961549, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
+      propertyPath: speed
+      value: 10.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605928481503961549, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -1586,6 +1590,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f970904b7bd17a645bae2835dfcb69a9, type: 2}
+    - target: {fileID: 8683228002897175440, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8969020964370270466, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_Name
       value: Player

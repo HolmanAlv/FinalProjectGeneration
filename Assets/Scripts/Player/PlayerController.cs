@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 12f;
 
     private InputAction moveAction;
+    private InputAction AttackAction;
 
     private Vector3 currentMoveDirection;
 
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];//
+        AttackAction = playerInput.actions["Attack"];
+
     }
 
 
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         Move();
         rotateMouse();
         UpdateAnimations();
+        Attack();
 
     }
 
@@ -139,6 +143,14 @@ public class PlayerController : MonoBehaviour
         {
             // Movimiento lateral → por ahora lo tratamos como forward
             animator.SetFloat("MoveSigned", 1f, 0.1f, Time.deltaTime);
+        }
+    }
+
+        private void Attack ()
+    {
+        if (AttackAction.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Attack");
         }
     }
 
