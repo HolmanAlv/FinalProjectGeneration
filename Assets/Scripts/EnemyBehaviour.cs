@@ -40,7 +40,6 @@ public class EnemyBehaviour : MonoBehaviour
     private bool isAttacking = false;
     private bool collisionPlayer = false;
     private bool isVisible = true;
-    private int example = 10;
     private Rigidbody rbPlayer;
     #endregion
 

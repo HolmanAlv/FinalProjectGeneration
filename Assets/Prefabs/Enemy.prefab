@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 174474442355557383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0064562308, y: 0.0064562308, z: 0.0064562308}
+  m_LocalScale: {x: 0.0044868775, y: 0.0044868775, z: 0.0044868775}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6113258700466410573}
@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.011377335, y: 1.2214057}
+  m_AnchoredPosition: {x: -0.011377335, y: 1.127}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1880112965036520318
@@ -118,10 +118,12 @@ MonoBehaviour:
   enemyBehaviour: {fileID: 816324561524614974}
   enemyHeader: {fileID: 3744498468758622813}
   canvas: {fileID: 1880112965036520318}
-  mainCamera: {fileID: 5141468682510597219, guid: 36d26aa3206eee846b894a0720ead7ea, type: 3}
+  mainCamera: {fileID: 0}
   lifeBar: {fileID: 9158512483040661903}
   maxHelth: 100
   currentHelth: 100
+  customRotation: {x: 30, y: 45, z: 0}
+  usarRotacionPersonalizada: 1
   isVisible: 1
   "puedeRecibirDa\xF1o": 1
 --- !u!1 &2378607892347705513
@@ -182,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
