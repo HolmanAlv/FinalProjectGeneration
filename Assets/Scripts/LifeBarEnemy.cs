@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class LifeBarEnemy : MonoBehaviour
 {
+    public EnemyBehaviour enemyBehaviour;
     public GameObject enemyHeader;
     public Canvas canvas;
     public Camera mainCamera;
@@ -10,6 +11,7 @@ public class LifeBarEnemy : MonoBehaviour
     public float maxHelth = 100f;
     public float currentHelth = 100f;
     public bool isVisible = true;
+    public bool puedeRecibirDaño = true;
 
     void Start()
     {
@@ -27,6 +29,39 @@ public class LifeBarEnemy : MonoBehaviour
         }
     }
 
+    public void RecibirDaño()
+    {
+        puedeRecibirDaño = false;
+
+        // Animación
+        if (enemyBehaviour.anim != null)
+        {
+            enemyBehaviour.anim.SetTrigger("Damage");
+        }
+
+        // Restar vida
+        currentHelth -= enemyBehaviour.dañoArma;
+        Debug.Log("Vida enemigo: " + currentHelth);
+
+
+
+        // Evitar daño continuo
+        Invoke(nameof(ResetDaño), 0.75f);
+    }
+
+    private void ResetDaño()
+    {
+        puedeRecibirDaño = true;
+    }
+
+
+
+
+
+
+
+
+//======================================================
     void OnBecameInvisible()
     {
         isVisible = false;

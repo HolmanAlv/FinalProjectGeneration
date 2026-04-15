@@ -115,13 +115,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c4fb92625d660488f4e78d33c075ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeBarEnemy
+  enemyBehaviour: {fileID: 816324561524614974}
   enemyHeader: {fileID: 3744498468758622813}
   canvas: {fileID: 1880112965036520318}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 5141468682510597219, guid: 36d26aa3206eee846b894a0720ead7ea, type: 3}
   lifeBar: {fileID: 9158512483040661903}
   maxHelth: 100
   currentHelth: 100
   isVisible: 1
+  "puedeRecibirDa\xF1o": 1
 --- !u!1 &2378607892347705513
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +233,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.01, y: 3.23825, z: 65.832}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.17, y: 2.17, z: 2.17}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 784182104191349779}
   - {fileID: 7039910312287159527}
@@ -355,7 +357,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 9
   m_Acceleration: 99999
   avoidancePriority: 50
   m_AngularSpeed: 99999
@@ -379,16 +381,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbd77411bedf0c4e8534599a4b6f274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
-  player: {fileID: 0}
+  damage: 1
+  structure: {fileID: 0}
+  player: {fileID: 8969020964370270466, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
   waypoints:
   - {fileID: 0}
   anim: {fileID: 8838384113783860049}
+  lifeBarEnemy: {fileID: 343750655802388494}
+  "da\xF1oArma": 25
   isAttackingPlayer: 0
   isAttackingFarm: 0
   agent: {fileID: 7441937678705154058}
   randomIndex: 0
   endDistination: 0
-  fuerzaEmpuje: 30
+  fuerzaEmpuje: 90
 --- !u!135 &7100262549980497227
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -420,7 +426,7 @@ Animator:
   m_GameObject: {fileID: 3744498468758622813}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1e29bed4197d5974ca859dde391504a5, type: 2}
+  m_Controller: {fileID: 9100000, guid: ec47ba774caeb44459c07782f45fb6cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

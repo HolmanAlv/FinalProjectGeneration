@@ -14,7 +14,7 @@ public class MainHealth : MonoBehaviour
     {
         currentHealth -= damage;
 
-        Debug.Log("Vida global: " + currentHealth);
+        //Debug.Log("Vida global: " + currentHealth);
 
         if (currentHealth <= 0)
         {

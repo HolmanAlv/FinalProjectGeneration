@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LogicaEnemy : MonoBehaviour
 {
-    public int hp = 3;
+    public int hp = 3; 
     public int dañoArma = 1;
     public Animator anim;
 

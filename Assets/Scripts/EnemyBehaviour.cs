@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public int damage = 1;
+    public StructureHealth structure;
     #region Variables
 
     #region Referencias
@@ -11,6 +14,8 @@ public class EnemyBehaviour : MonoBehaviour
     public GameObject player;
     public GameObject[] waypoints;
     public Animator anim;
+    public LifeBarEnemy lifeBarEnemy;
+    public int dañoArma = 1;
     #endregion
 
     #region Estados
@@ -55,6 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (player != null)
             rbPlayer = player.GetComponent<Rigidbody>();
+        if (lifeBarEnemy != null) lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>();
 
         StartCoroutine(UpdateVisibilityRoutine());
     }
@@ -91,6 +97,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     #region Trigger Events
 
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Farm"))
@@ -101,6 +108,11 @@ public class EnemyBehaviour : MonoBehaviour
         {
             collisionPlayer = true;
             if (agent != null) agent.isStopped = true;
+        }
+        if (other.CompareTag("Arma") && lifeBarEnemy.puedeRecibirDaño)
+        {
+            Debug.Log("Orale cocazo");
+            lifeBarEnemy.RecibirDaño();
         }
     }
 
@@ -167,7 +179,18 @@ public class EnemyBehaviour : MonoBehaviour
     {
         while (isAttackingFarm && !isAttackingPlayer)
         {
-            example/*lifeFarm*/ = example/*lifeFarm*/ - example/*damage*/;
+            if (structure != null)
+            {
+                structure.TakeDamage(damage);
+                //animacion atacar
+            }
+            if (waypoints[randomIndex].gameObject.activeInHierarchy == false)
+            {
+                isAttackingFarm = false;
+                endDistination = false;
+                randomIndex = Random.Range(0, waypoints.Length);
+                structure = waypoints[randomIndex].GetComponentInParent<StructureHealth>();
+            }
             yield return new WaitForSeconds(2f);
         }
     }
@@ -226,6 +249,7 @@ public class EnemyBehaviour : MonoBehaviour
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        structure = waypoints[randomIndex].GetComponentInParent<StructureHealth>();
     }
 
     public void StartAttackingPlayer()

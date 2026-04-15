@@ -179,14 +179,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbd77411bedf0c4e8534599a4b6f274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
+  player: {fileID: 0}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  anim: {fileID: 0}
+  isAttackingPlayer: 0
+  isAttackingFarm: 0
   agent: {fileID: 935701504425852433}
   randomIndex: 0
   endDistination: 0
+  fuerzaEmpuje: 30
 --- !u!95 &1002099243143767337
 Animator:
   serializedVersion: 7
