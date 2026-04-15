@@ -10,6 +10,7 @@ public class LifeBarEnemy : MonoBehaviour
     public Canvas canvas;
     public Camera mainCamera;
     public Image lifeBar;
+    public GameObject power;
     
     [Header("Vida")]
     public float maxHelth = 100f;
@@ -25,6 +26,7 @@ public class LifeBarEnemy : MonoBehaviour
 
     void Start()
     {
+        power.SetActive(false);
         if (mainCamera == null) mainCamera = Camera.main;
     }
     void LateUpdate()
@@ -50,6 +52,9 @@ public class LifeBarEnemy : MonoBehaviour
         
         if (currentHelth <= 0)
         {
+            power.SetActive(true);
+            PowerBehaviour powerBehaviour = power.GetComponent<PowerBehaviour>();
+            powerBehaviour.ExitTheFather();
             Destroy(enemyHeader);
         }
     }
