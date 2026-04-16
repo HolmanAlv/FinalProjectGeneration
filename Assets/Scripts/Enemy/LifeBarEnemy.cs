@@ -59,6 +59,13 @@ public class LifeBarEnemy : MonoBehaviour
         }
     }
 
+    public void RemoveByDayTransition()
+    {
+        Destroy(enemyHeader);
+    }
+
+
+
     public void RecibirDaño()
     {
         if (!puedeRecibirDaño) return;

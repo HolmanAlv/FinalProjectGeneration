@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ManagerEnemy : MonoBehaviour
@@ -7,6 +8,11 @@ public class ManagerEnemy : MonoBehaviour
     #region Variables
 
     public EnemyBehaviour enemyBehaviour;
+
+    [Header("Implementación del cambio de estado entre dia y nnoche")]
+    public DayNiightManager dayNiightManager;
+    private Coroutine spawnCoroutine;
+
 
     #region Configuración de Spawn
 
@@ -74,7 +80,16 @@ public class ManagerEnemy : MonoBehaviour
 
     void Awake()
     {
-        StartCoroutine(SpawnRoutine());
+        //StartCoroutine(SpawnRoutine()); // ya nod eberia arrancar de una
+    }
+
+    private void OnEnable()
+    {
+        if (dayNiightManager != null)
+        {
+            dayNiightManager.OnNightStarted += HandleNightStarted;
+            dayNiightManager.OnTransitionToDayStarted += StopSpawn;
+        }
     }
 
     IEnumerator SpawnRoutine()
@@ -94,6 +109,7 @@ public class ManagerEnemy : MonoBehaviour
 
     void SpawnEnemy()
     {
+
         if (spawnPoints.Length == 0)
             return;
 
@@ -121,6 +137,12 @@ public class ManagerEnemy : MonoBehaviour
 
     void Update()
     {
+
+        if (dayNiightManager == null) return;
+        if (!dayNiightManager.IsNight) return;
+
+        enemiesInScene = enemiesList.Count;
+
         if (!enemyAttack && enemiesInScene == maxEnemies)
         {
             EnemyAttack();
@@ -130,6 +152,51 @@ public class ManagerEnemy : MonoBehaviour
             enemyAttack = false;
         }
     }
+
+
+    private void OnDisable()
+    {
+        if (dayNiightManager != null)
+        {
+            dayNiightManager.OnNightStarted -= HandleNightStarted;
+            dayNiightManager.OnTransitionToDayStarted -= StopSpawn;
+        }
+    }
+
+    void StartSpawn()
+    {
+        if (spawnCoroutine != null) return;
+        spawnCoroutine = StartCoroutine(SpawnRoutine());
+    }
+
+    private void HandleNightStarted(int nightNumber)
+    {
+        ApplyDifficultyForNight(nightNumber);
+        Debug.Log("⚔️ ManagerEnemy recibe noche: " + nightNumber);
+
+        StartSpawn();
+    }
+
+    void StopSpawn()
+    {
+        if (spawnCoroutine == null) return;
+        StopCoroutine(spawnCoroutine);
+        spawnCoroutine = null;
+
+         List<GameObject> enemiesCopy = new List<GameObject>(enemiesList);
+
+        foreach (GameObject enemy in enemiesList)
+        {
+            LifeBarEnemy lifeBar = enemy.GetComponentInChildren<LifeBarEnemy>();
+
+            if (lifeBar != null)
+            {
+                lifeBar.RemoveByDayTransition();
+            }
+        }
+    }
+
+
 
     public void EnemyAttack()
     {
@@ -172,11 +239,23 @@ public class ManagerEnemy : MonoBehaviour
 
     #endregion
 
+    private void ApplyDifficultyForNight(int nightNumber)
+    {
+        ResetearTodo();
+
+        int increments = Mathf.Max(0, nightNumber - 1);
+
+        for (int i = 0; i < increments; i++)
+        {
+            AumentarDificultad();
+        }
+    }
+
     #region Aumento de Dificultad
 
     [ContextMenu("▲ Aumentar Dificultad")]
     public void AumentarDificultad()
-    {
+    { 
         AumentarLimiteEnemigos();
         AumentarVelocidadEnemigos();
         ReducirTiempoSpawn();
