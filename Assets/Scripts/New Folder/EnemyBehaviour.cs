@@ -157,6 +157,7 @@ public class EnemyBehaviour : MonoBehaviour
         while (isAttackingPlayer && player != null && collisionPlayer)
         {
             if (agent != null) agent.isStopped = true;
+            anim.SetBool("Attack", true);
 
             if (rbPlayer != null)
             {
@@ -168,7 +169,7 @@ public class EnemyBehaviour : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
-
+        anim.SetBool("Attack", false);
         isAttacking = false;
         if (agent != null) agent.isStopped = false;
     }
@@ -183,7 +184,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 structure.TakeDamage(damage);
                 Debug.Log("Atacando granja: " + structure.gameObject.name + " Waypoint: " + waypoints[randomIndex].name);
-                //animacion atacar
+                anim.SetBool("Attack", true);
             }
             if (waypoints[randomIndex].gameObject.activeInHierarchy == false)
             {
@@ -193,6 +194,7 @@ public class EnemyBehaviour : MonoBehaviour
                 structure = waypoints[randomIndex].GetComponentInParent<StructureHealth>();
             }
             yield return new WaitForSeconds(2f);
+            anim.SetBool("Attack", false);
         }
     }
 
