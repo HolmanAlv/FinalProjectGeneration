@@ -6,34 +6,32 @@ public class StructureHealth : MonoBehaviour
     private float currentHealth;
 
     public MainHealth mainHealth; // referencia a la vida global
-    public StructureHealthBar healthBar;
+
+    public StructureHealthUI healthUI; // referencia al UI de salud
 
     void Start()
     {
         currentHealth = maxHealth;
 
-        if (healthBar != null)
+        if (healthUI != null)
         {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
+            healthUI.SetTarget(transform);
+            healthUI.UpdateHealth(currentHealth, maxHealth);
         }
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-
+        Debug.Log(gameObject.name + " vida: " + currentHealth);
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
         // Reducir también la vida global
         if (mainHealth != null)
         {
             mainHealth.TakeDamage(damage / 4f);
-        }
-
-        // Actualizar barra visual
-        if (healthBar != null)
-        {
-            healthBar.SetHealth(currentHealth);
         }
 
         if (currentHealth <= 0)
@@ -46,16 +44,6 @@ public class StructureHealth : MonoBehaviour
     {
         Debug.Log(gameObject.name + " destruida");
         gameObject.SetActive(false);
-    }
-
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return maxHealth;
     }
 
 }
