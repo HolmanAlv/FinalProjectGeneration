@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class StructureHealthUI : MonoBehaviour
 {
     public Image healthFill; // la imagen verde
-    public Vector3 offset = new Vector3(0, 2, 0);
+    public Vector3 offset = new Vector3(0, 5, 0);
     private Transform target;
 
     public void SetTarget(Transform targetTransform)
