@@ -7,15 +7,27 @@ public class StructureHealth : MonoBehaviour
 
     public MainHealth mainHealth; // referencia a la vida global
 
+    public StructureHealthUI healthUI; // referencia al UI de salud
+
     void Start()
     {
         currentHealth = maxHealth;
+
+        if (healthUI != null)
+        {
+            healthUI.SetTarget(transform);
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
+        Debug.Log(gameObject.name + " vida: " + currentHealth);
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
         // Reducir también la vida global
         if (mainHealth != null)
         {
