@@ -135,7 +135,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             agent.SetDestination(waypoints[randomIndex].transform.position);
         }
-        endDistination = true;
     }
 
     void PathFindingPlayer()
@@ -176,11 +175,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator AttackFarm()
     {
+        structure = waypoints[randomIndex].GetComponent<StructureHealth>();
         while (isAttackingFarm && !isAttackingPlayer)
         {
+            
             if (structure != null)
             {
                 structure.TakeDamage(damage);
+                Debug.Log("Atacando granja: " + structure.gameObject.name + " Waypoint: " + waypoints[randomIndex].name);
                 //animacion atacar
             }
             if (waypoints[randomIndex].gameObject.activeInHierarchy == false)
@@ -248,7 +250,6 @@ public class EnemyBehaviour : MonoBehaviour
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        structure = waypoints[randomIndex].GetComponentInParent<StructureHealth>();
     }
 
     public void StartAttackingPlayer()
