@@ -130,7 +130,7 @@ public class ManagerEnemy : MonoBehaviour
         {
             EnemyAttack();
         }
-        else if (enemyAttack && enemiesInScene < (maxEnemies - 3))
+        else if (enemyAttack && enemiesInScene < maxEnemies )
         {
             enemyAttack = false;
         }
@@ -138,6 +138,7 @@ public class ManagerEnemy : MonoBehaviour
 
     public void EnemyAttack()
     {
+        Debug.Log ("Llamando a EnemyAttack()");
         if (enemiesInScene == 0)
             return;
 

@@ -65,12 +65,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (isAttackingPlayer && player != null)
         {
+            Debug.Log($"Persiguiendo jugador - collisionPlayer: {collisionPlayer}, isAttacking: {isAttacking}");
             if (collisionPlayer && !isAttacking)
             {
                 StartCoroutine(AttackPlayer());
             }
             else if (!collisionPlayer && !isAttacking)
             {
+                Debug.Log("Llamando a PathFindingPlayer()");
                 PathFindingPlayer();
             }
         }
@@ -106,7 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             collisionPlayer = true;
-            if (agent != null) agent.isStopped = true;
+            //if (agent != null) agent.isStopped = true;
         }
         if (other.CompareTag("Arma") && lifeBarEnemy.puedeRecibirDaño)
         {
@@ -139,10 +141,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     void PathFindingPlayer()
     {
+        Debug.Log($"PathFindingPlayer - player: {player != null}, agent: {agent != null}");
         if (player != null && agent != null)
         {
             agent.isStopped = false;
             agent.SetDestination(player.transform.position);
+            Debug.Log($"Destino asignado: {player.transform.position}");
         }
     }
 
@@ -290,6 +294,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void StartAttackingPlayer()
     {
+        Debug.Log("StartAttackingPlayer llamado");
         if (agent != null) agent.stoppingDistance = 0f;
         isAttackingFarm = false;
         endDistination = false;
