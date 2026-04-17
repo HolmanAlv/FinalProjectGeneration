@@ -53,13 +53,10 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     void Start()
-    {
-        if (waypoints.Length > 0)
-            randomIndex = Random.Range(0, waypoints.Length);
+{
+    if (waypoints.Length > 0) randomIndex = Random.Range(0, waypoints.Length);
 
-        if (player != null)
-            rbPlayer = player.GetComponent<Rigidbody>();
-        if (lifeBarEnemy != null) lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>();
+    if (player != null) rbPlayer = player.GetComponent<Rigidbody>();
 
         StartCoroutine(UpdateVisibilityRoutine());
     }
@@ -101,7 +98,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Farm"))
         {
-            endDistination = true;
+            if (randomIndex < waypoints.Length && other.gameObject == waypoints[randomIndex]) 
+            {  
+                endDistination = true;
+            }
         }
         if (other.CompareTag("Player"))
         {
@@ -158,6 +158,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (agent != null) agent.isStopped = true;
             anim.SetBool("Attack", true);
+            yield return new WaitForSeconds(0.3f);
 
             if (rbPlayer != null)
             {
@@ -167,7 +168,7 @@ public class EnemyBehaviour : MonoBehaviour
                 rbPlayer.AddForce(direccionEmpuje * fuerzaEmpuje, ForceMode.Impulse);
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
         }
         anim.SetBool("Attack", false);
         isAttacking = false;
@@ -175,28 +176,61 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     IEnumerator AttackFarm()
+{
+    if (waypoints.Length == 0)
     {
-        structure = waypoints[randomIndex].GetComponent<StructureHealth>();
-        while (isAttackingFarm && !isAttackingPlayer)
-        {
-            
-            if (structure != null)
-            {
-                structure.TakeDamage(damage);
-                Debug.Log("Atacando granja: " + structure.gameObject.name + " Waypoint: " + waypoints[randomIndex].name);
-                anim.SetBool("Attack", true);
-            }
-            if (waypoints[randomIndex].gameObject.activeInHierarchy == false)
-            {
-                isAttackingFarm = false;
-                endDistination = false;
-                randomIndex = Random.Range(0, waypoints.Length);
-                structure = waypoints[randomIndex].GetComponentInParent<StructureHealth>();
-            }
-            yield return new WaitForSeconds(2f);
-            anim.SetBool("Attack", false);
-        }
+        isAttackingFarm = false;
+        yield break;
     }
+    
+    structure = waypoints[randomIndex].GetComponent<StructureHealth>();
+    
+    while (isAttackingFarm && !isAttackingPlayer)
+    {
+        bool waypointInvalido = false;
+        
+        if (randomIndex >= waypoints.Length || waypoints[randomIndex] == null)
+        {
+            waypointInvalido = true;
+        }
+        else if (!waypoints[randomIndex].activeInHierarchy)
+        {
+            waypointInvalido = true;
+        }
+        
+        if (waypointInvalido)
+        {
+            Debug.Log("Waypoint destruido, actualizando lista...");
+            waypoints = GameObject.FindGameObjectsWithTag("Farm");
+            
+            if (waypoints.Length > 0)
+            {
+                randomIndex = Random.Range(0, waypoints.Length);
+                structure = waypoints[randomIndex].GetComponent<StructureHealth>();
+                endDistination = false;
+
+                agent.SetDestination(waypoints[randomIndex].transform.position);
+            }
+            else
+            {
+
+                isAttackingFarm = false;
+                break;
+            }
+        }
+
+        if (structure != null && !waypointInvalido)
+        {
+            anim.SetBool("Attack", true);
+            yield return new WaitForSeconds(0.3f);
+            structure.TakeDamage(damage);
+            Debug.Log("Atacando granja: " + structure.gameObject.name);
+        }
+        
+        yield return new WaitForSeconds(1.4f);
+        anim.SetBool("Attack", false);
+    }
+}
 
     #endregion
 
@@ -252,6 +286,8 @@ public class EnemyBehaviour : MonoBehaviour
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
 
     public void StartAttackingPlayer()
