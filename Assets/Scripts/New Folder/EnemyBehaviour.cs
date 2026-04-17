@@ -284,8 +284,6 @@ public class EnemyBehaviour : MonoBehaviour
     public void FindObjects()
     {
         waypoints = GameObject.FindGameObjectsWithTag("Farm");
-        player = GameObject.FindGameObjectWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
         if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
