@@ -626,7 +626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be60e903f955f184e856dbfd310f79fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManagerEnemy
-  enemyBehaviour: {fileID: 816324561524614974, guid: dfca1614cf42bec40bd5f95e62e150e0, type: 3}
   enemyPrefab: {fileID: 3744498468758622813, guid: dfca1614cf42bec40bd5f95e62e150e0, type: 3}
   spawnPoints:
   - {fileID: 1567425283}
@@ -634,6 +633,7 @@ MonoBehaviour:
   - {fileID: 1103319279}
   - {fileID: 1613438443}
   radioSpawn: 5
+  speedAnim: 0.8
   maxEnemies: 5
   enemySpeed: 10
   spawnInterval: 1.5
@@ -642,11 +642,13 @@ MonoBehaviour:
   topeMaxSpeed: 40
   topeMinSpawnTime: 0.1
   topeMinDamage: 20
+  topeMaxSpeedAnim: 2
   incrementoEnemies: 8
   incrementoSpeed: 2
   incrementoSpawn: -0.6
   factorReduccion: 0.8
   incrementoDamage: -20
+  incrementoSpeedAnim: 0.2
 --- !u!4 &1209396041
 Transform:
   m_ObjectHideFlags: 0

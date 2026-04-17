@@ -6,8 +6,6 @@ public class ManagerEnemy : MonoBehaviour
 {
     #region Variables
 
-    public EnemyBehaviour enemyBehaviour;
-
     #region Configuración de Spawn
 
     [Header("=== CONFIGURACIÓN DE SPAWN ===")]
@@ -20,6 +18,7 @@ public class ManagerEnemy : MonoBehaviour
     #region Estadísticas del Juego
 
     [Header("=== ESTADÍSTICAS DEL JUEGO ===")]
+    public float speedAnim = 0.3f;
     public int maxEnemies = 10;
     public float enemySpeed = 4f;
     public float spawnInterval = 2f;
@@ -34,6 +33,7 @@ public class ManagerEnemy : MonoBehaviour
     public float topeMaxSpeed = 15f;
     public float topeMinSpawnTime = 0.3f;
     public int topeMinDamage = 20;
+    public float topeMaxSpeedAnim = 2f;
 
     #endregion
 
@@ -54,6 +54,9 @@ public class ManagerEnemy : MonoBehaviour
 
     [SerializeField]
     private float incrementoDamage = -20f;
+
+    [SerializeField]
+    private float incrementoSpeedAnim = 0.2f;
 
     #endregion
     // Variables privadas
@@ -110,8 +113,10 @@ public class ManagerEnemy : MonoBehaviour
         enemiesList.Add(newEnemy);
         ApplySpeedToEnemy(newEnemy);
         EnemyBehaviour behaviour = newEnemy.GetComponent<EnemyBehaviour>();
+
         if (behaviour != null)
         {
+            behaviour.anim.speed = speedAnim;
             behaviour.dañoArma = weaponDamage;
         }
     }
@@ -168,6 +173,9 @@ public class ManagerEnemy : MonoBehaviour
         UnityEngine.AI.NavMeshAgent agent = enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (agent != null)
             agent.speed = enemySpeed;
+
+        EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
+        behaviour.anim.speed = speedAnim;
     }
 
     #endregion
@@ -243,6 +251,7 @@ public class ManagerEnemy : MonoBehaviour
     {
         enemySpeed = Mathf.Min(enemySpeed + incrementoSpeed, topeMaxSpeed);
         incrementoSpeed *= factorReduccion;
+        speedAnim = Mathf.Min(speedAnim + incrementoSpeedAnim, topeMaxSpeedAnim);
         UpdateAllEnemiesSpeed();
     }
 
