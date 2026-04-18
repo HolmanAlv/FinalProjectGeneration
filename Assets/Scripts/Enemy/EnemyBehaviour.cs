@@ -181,6 +181,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator AttackFarm()
 {
+    Debug.Log("Pegandole a la granja... socio");
     if (waypoints.Length == 0)
     {
         isAttackingFarm = false;
