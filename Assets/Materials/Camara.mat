@@ -44,10 +44,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorResolution: 1
-    - _DitherSpread: 14.49
-    - _ForceOpacity: 1.1
+    - _DitherSpread: 100
+    - _ForceOpacity: 0.1
     - _QueueControl: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.7924528, b: 0.5475633, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
