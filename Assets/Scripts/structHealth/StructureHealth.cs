@@ -3,7 +3,7 @@ using UnityEngine;
 public class StructureHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
-    private float currentHealth;
+    public float currentHealth;
 
     public MainHealth mainHealth; // referencia a la vida global
 
