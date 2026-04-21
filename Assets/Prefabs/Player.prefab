@@ -41,7 +41,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5536024553117135869}
-  - component: {fileID: 7352387220737745742}
   - component: {fileID: 3239909229518080767}
   - component: {fileID: 7507236522500073999}
   - component: {fileID: 531368709740353440}
@@ -75,27 +74,6 @@ Transform:
   - {fileID: 3481904577354071781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7352387220737745742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3005722815278357125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728d5f2e40159544b8f8780390a13971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  visual: {fileID: 6936138122123652768}
-  playerInput: {fileID: 3239909229518080767}
-  mainCamera: {fileID: 0}
-  animator: {fileID: 2914923324247946823}
-  speed: 9.5
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  rotationSpeed: 15
 --- !u!114 &3239909229518080767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEnergy
   maxEnergy: 20
   currentEnergy: 0
+  uIManager: {fileID: 0}
 --- !u!114 &3595869618404991261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerResources
   wood: 0
   stone: 0
+  uIManager: {fileID: 0}
 --- !u!114 &5762004270271950079
 MonoBehaviour:
   m_ObjectHideFlags: 0

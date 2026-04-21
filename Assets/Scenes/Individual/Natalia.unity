@@ -203,6 +203,7 @@ MonoBehaviour:
   - {fileID: 499156809}
   - {fileID: 1170385357}
   radioSpawn: 5
+  speedAnim: 0.3
   maxEnemies: 10
   enemySpeed: 4
   spawnInterval: 2
@@ -211,11 +212,13 @@ MonoBehaviour:
   topeMaxSpeed: 40
   topeMinSpawnTime: 0.1
   topeMinDamage: 20
+  topeMaxSpeedAnim: 2
   incrementoEnemies: 6.6
   incrementoSpeed: 1.5
   incrementoSpawn: -0.3
   factorReduccion: 0.8
   incrementoDamage: -20
+  incrementoSpeedAnim: 0.2
 --- !u!4 &95489697
 Transform:
   m_ObjectHideFlags: 0
@@ -698,12 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6dd185858027a429f48efad75e0a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealthBar
-  fillImage: {fileID: 843550065}
-  canvas: {fileID: 464573690}
-  maxHealth: 100
-  currentHealth: 100
-  customRotation: {x: 0, y: 0, z: 0}
-  usarRotacionPersonalizada: 1
 --- !u!114 &464573688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,12 +1354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6dd185858027a429f48efad75e0a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealthBar
-  fillImage: {fileID: 2040173825}
-  canvas: {fileID: 865834212}
-  maxHealth: 100
-  currentHealth: 100
-  customRotation: {x: 0, y: 0, z: 0}
-  usarRotacionPersonalizada: 1
 --- !u!114 &865834210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,12 +2913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6dd185858027a429f48efad75e0a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealthBar
-  fillImage: {fileID: 1609879799}
-  canvas: {fileID: 1731091874}
-  maxHealth: 100
-  currentHealth: 100
-  customRotation: {x: 0, y: 0, z: 0}
-  usarRotacionPersonalizada: 1
 --- !u!114 &1731091872
 MonoBehaviour:
   m_ObjectHideFlags: 0

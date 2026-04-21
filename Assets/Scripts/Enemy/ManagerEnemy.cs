@@ -183,23 +183,35 @@ public class ManagerEnemy : MonoBehaviour
 
     void StopSpawn()
     {
-        if (spawnCoroutine == null) return;
-        StopCoroutine(spawnCoroutine);
-        spawnCoroutine = null;
-
-         List<GameObject> enemiesCopy = new List<GameObject>(enemiesList);
-
-        foreach (GameObject enemy in enemiesList)
+        if (spawnCoroutine != null)
         {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+
+        List<GameObject> enemiesCopy = new List<GameObject>(enemiesList);
+
+        enemiesList.Clear();
+        enemiesInScene = 0;
+        enemyAttack = false;
+
+        foreach (GameObject enemy in enemiesCopy)
+        {
+            if (enemy == null)
+                continue;
+
             LifeBarEnemy lifeBar = enemy.GetComponentInChildren<LifeBarEnemy>();
 
             if (lifeBar != null)
             {
                 lifeBar.RemoveByDayTransition();
             }
+            else
+            {
+                Destroy(enemy);
+            }
         }
     }
-
 
 
     public void EnemyAttack()
@@ -236,12 +248,18 @@ public class ManagerEnemy : MonoBehaviour
 
     void ApplySpeedToEnemy(GameObject enemy)
     {
+        if (enemy == null)
+            return;
+
         UnityEngine.AI.NavMeshAgent agent = enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (agent != null)
             agent.speed = enemySpeed;
 
         EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
-        behaviour.anim.speed = speedAnim;
+        if (behaviour != null && behaviour.anim != null)
+        {
+            behaviour.anim.speed = speedAnim;
+        }
     }
 
     #endregion
@@ -295,6 +313,8 @@ public class ManagerEnemy : MonoBehaviour
 
     void UpdateAllEnemiesDamage()
     {
+        enemiesList.RemoveAll(enemy => enemy == null);
+
         foreach (GameObject enemy in enemiesList)
         {
             if (enemy != null)
@@ -350,6 +370,8 @@ public class ManagerEnemy : MonoBehaviour
 
     void UpdateAllEnemiesSpeed()
     {
+        enemiesList.RemoveAll(enemy => enemy == null);
+
         foreach (GameObject enemy in enemiesList)
         {
             ApplySpeedToEnemy(enemy);

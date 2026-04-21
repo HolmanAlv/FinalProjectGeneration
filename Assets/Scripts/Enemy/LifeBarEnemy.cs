@@ -72,10 +72,10 @@ public class LifeBarEnemy : MonoBehaviour
         
         puedeRecibirDaño = false;
 
-        if (enemyBehaviour != null && enemyBehaviour.anim != null)
+        /*if (enemyBehaviour != null && enemyBehaviour.anim != null) 
         {
             enemyBehaviour.anim.SetTrigger("Damage");
-        }
+        }*/
 
         currentHelth -= enemyBehaviour.dañoArma;
         Debug.Log("Vida enemigo: " + currentHelth);
