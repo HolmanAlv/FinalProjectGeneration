@@ -33,6 +33,19 @@ public class MainHealth : MonoBehaviour
 
     }
 
+    public void RestoreHealth(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
+
+        Debug.Log("Vida global restaurada: " + currentHealth);
+    }
+
     void GameOver()
     {
         Debug.Log("GAME OVER");
