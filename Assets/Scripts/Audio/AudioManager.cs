@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class AudioManager : MonoBehaviour
         ambientSpotDict = LoadDict(ambientSpotClips);
         sfxDict      = LoadDict(sfxClips);
         uiDict       = LoadDict(uiClips);
+    }
+
+    void Start()
+    {
+        PlayMusic("endy");
     }
 
     Dictionary<string, AudioClip> LoadDict(List<SoundEntry> entries)

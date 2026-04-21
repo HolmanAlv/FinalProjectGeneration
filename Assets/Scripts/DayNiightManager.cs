@@ -89,7 +89,7 @@ public class DayNiightManager : MonoBehaviour
         // Musica de noche
         if(audioManager.musicSource.isPlaying)
         {
-            audioManager.StopMusic(1f);
+            audioManager.StopMusic(0.5f);
         }
         audioManager.PlayMusic("night_01");
 
@@ -212,8 +212,8 @@ public class DayNiightManager : MonoBehaviour
         {
             audioManager.StopMusic(1f);
         }
-        //audioManager.PlayMusic("day_01");
-        audioManager.PlayAmbience("raven");
+        audioManager.PlayMusic("day_01");
+        audioManager.PlayAmbience("bir");
 
         if (directionalLight != null)
         {

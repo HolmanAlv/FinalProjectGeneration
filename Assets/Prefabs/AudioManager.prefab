@@ -707,7 +707,7 @@ MonoBehaviour:
   - name: day_03
     clip: {fileID: 8300000, guid: b721c5f046f709846804cdd7ea618bc5, type: 3}
   - name: night_01
-    clip: {fileID: 8300000, guid: 34f897acf9135db4490c37610571cc7a, type: 3}
+    clip: {fileID: 8300000, guid: c4e8b2ff6f30748409e30a48276a89e4, type: 3}
   - name: 
     clip: {fileID: 0}
   ambientClips:
