@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Farm
   - Arma
+  - Continue
+  - NewGame
   layers:
   - Default
   - TransparentFX
