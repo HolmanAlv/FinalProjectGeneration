@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class InteractableResources : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class InteractableResources : MonoBehaviour
 
     private bool isAvailable = true;
     private float cooldownTimer;
+
+    [SerializeField] private DayNiightManager dayNiightManager; 
 
     private void Start()
     {
@@ -64,6 +67,13 @@ public class InteractableResources : MonoBehaviour
 
     void UpdateUI()
     {
+        if (!CanInteractByTime())
+        {
+            textRecolectar.SetActive(false);
+            textCooldown.SetActive(false);
+            return;
+        }
+
         if (isAvailable)
         {
             textRecolectar.SetActive(true);
@@ -80,6 +90,12 @@ public class InteractableResources : MonoBehaviour
     {
         if (!isAvailable)
             return;
+    
+        if (!CanInteractByTime())
+        {     
+            Debug.Log("Este recurso solo puede recolectarse de día.");
+            return;
+        }
 
 
         PlayerEnergy playerEnergy = player.GetComponent<PlayerEnergy>();
@@ -106,5 +122,10 @@ public class InteractableResources : MonoBehaviour
         cooldownTimer = cooldownTime;
 
         UpdateUI();
+    }
+
+    private bool CanInteractByTime()
+    {
+        return dayNiightManager != null && dayNiightManager.CurrentState == DayNiightManager.DayNightState.Day;
     }
 }

@@ -25,6 +25,20 @@ public class PlayerResources : MonoBehaviour
         Debug.Log("cantidad de piedra" + stone);
     }
 
+    public bool ConsumeResources(int woodAmount, int stoneAmount)
+    {
+        if(wood < woodAmount ||stone < stoneAmount)
+        return false;
+
+        wood -= woodAmount;
+        stone-= stoneAmount;
+
+        uIManager.UpdateWood(wood);
+        uIManager.UpdateStone(stone);
+
+        return true;
+    }
+
 
 
 
