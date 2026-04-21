@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23309717094965422}
   - component: {fileID: 5471672112289041698}
   - component: {fileID: 1510810086958602051}
+  - component: {fileID: 230568580930001090}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_02
   m_TagString: Untagged
@@ -132,6 +133,28 @@ MonoBehaviour:
   cooldownTime: 20
   textRecolectar: {fileID: 3329657946757995129}
   textCooldown: {fileID: 8960990744495924278}
+--- !u!64 &230568580930001090
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290125285081394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 305f277e1529222439b495a441de2f0b, type: 3}
 --- !u!1 &3329657946757995129
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +166,7 @@ GameObject:
   - component: {fileID: 2085837149180349230}
   - component: {fileID: 330643111228784145}
   - component: {fileID: 7479245405470705149}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text Recolectar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +304,7 @@ GameObject:
   - component: {fileID: 6960155073210920885}
   - component: {fileID: 8980906159807415246}
   - component: {fileID: 1386392704623788548}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CanvasTexto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +406,7 @@ GameObject:
   - component: {fileID: 7655577403023884673}
   - component: {fileID: 7776302764028947702}
   - component: {fileID: 5866343381359906972}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text Esperar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
