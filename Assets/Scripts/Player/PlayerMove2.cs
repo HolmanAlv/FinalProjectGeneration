@@ -96,10 +96,7 @@ public class PlayerMove2 : MonoBehaviour
     
     }
 
-    private void Movement()
-    {
-        
-    }
+ 
 
     private void Animations(Vector2 input)
     {
@@ -159,10 +156,7 @@ public class PlayerMove2 : MonoBehaviour
 
     private void EndAttack()
     {
-        isAttacking = false;
-
-
-        
+        isAttacking = false;  
     }
 
     public void SetEnemyInRange(bool value)

@@ -13,6 +13,8 @@ public class NewOrLoad : MonoBehaviour
     {
         if (Instance == null)
         {
+            GameObject loadButton = GameObject.FindWithTag("Continue");
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
             
@@ -20,7 +22,7 @@ public class NewOrLoad : MonoBehaviour
             
             if (loadButton != null)
             {
-                loadButton.enabled = File.Exists(saveFile);
+                loadButton.SetActive(File.Exists(saveFile));
             }
         }
         else
