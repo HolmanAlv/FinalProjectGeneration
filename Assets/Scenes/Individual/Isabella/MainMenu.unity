@@ -827,7 +827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewOrLoad
   loadGame: 0
-  loadButton: {fileID: 1386673144}
+  loadButton: {fileID: 0}
+  newButton: {fileID: 0}
 --- !u!4 &938114366
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,7 +1418,7 @@ GameObject:
   - component: {fileID: 1386673148}
   m_Layer: 5
   m_Name: Continue
-  m_TagString: Untagged
+  m_TagString: Continue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1715,7 +1716,7 @@ GameObject:
   - component: {fileID: 1613060546}
   m_Layer: 5
   m_Name: New Game
-  m_TagString: Untagged
+  m_TagString: NewGame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
