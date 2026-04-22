@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5471672112289041698}
   - component: {fileID: 1510810086958602051}
   - component: {fileID: 230568580930001090}
+  - component: {fileID: 4535171877131894025}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_02
   m_TagString: Untagged
@@ -133,7 +134,30 @@ MonoBehaviour:
   cooldownTime: 20
   textRecolectar: {fileID: 3329657946757995129}
   textCooldown: {fileID: 8960990744495924278}
+  dayNiightManager: {fileID: 0}
 --- !u!64 &230568580930001090
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290125285081394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 305f277e1529222439b495a441de2f0b, type: 3}
+--- !u!64 &4535171877131894025
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -18,10 +18,23 @@ public class InteractableResources : MonoBehaviour
     private bool isAvailable = true;
     private float cooldownTimer;
 
-    [SerializeField] private DayNiightManager dayNiightManager; 
+   private DayNiightManager dayNiightManager;
+
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
+
+        dayNiightManager = DayNiightManager.Instance;
+
+        if (dayNiightManager == null)
+        {
+            Debug.LogError("DayNightManager no encontrado en la escena");
+        }
+        
         textRecolectar.SetActive(false);
         textCooldown.SetActive(false);
     }

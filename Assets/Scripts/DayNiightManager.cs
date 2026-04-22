@@ -58,8 +58,22 @@ public class DayNiightManager : MonoBehaviour
 
     private AudioManager audioManager;
 
+    public static DayNiightManager Instance;
+
     private void Awake()
     {
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         if (startNightButton != null)
