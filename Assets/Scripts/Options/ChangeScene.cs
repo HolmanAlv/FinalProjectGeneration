@@ -18,7 +18,7 @@ public class ChangeScene : MonoBehaviour
 
     public void IrAlJuego()
     {
-        SceneManager.LoadScene("Prototipo2");
+        SceneManager.LoadScene("Tutorial");
     }
 
 

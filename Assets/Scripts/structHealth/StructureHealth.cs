@@ -23,8 +23,17 @@ public class StructureHealth : MonoBehaviour
     public float MaxHealth => maxHealth;
     public bool PlayerInRange => playerInRange;
 
+    private DayNiightManager dayNiightManager;
+
     void Start()
     {
+        dayNiightManager = DayNiightManager.Instance;
+
+        if (dayNiightManager == null)
+        {
+            Debug.LogError("DayNightManager no encontrado en la escena");
+        }
+
         currentHealth = maxHealth;
 
         if (healthUI != null)
@@ -65,6 +74,13 @@ public class StructureHealth : MonoBehaviour
 
     public void TryRepair()
     {
+        if (!CanInteractByTime())
+        {
+            repairTextObject.SetActive(false);
+            return;
+        }
+
+
         if (!playerInRange)
             return;
 
@@ -123,6 +139,8 @@ public class StructureHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+
         if (!other.CompareTag("Player"))
             return;
 
@@ -133,6 +151,12 @@ public class StructureHealth : MonoBehaviour
         if (currentPlayerResources == null)
         {
             Debug.LogWarning("El jugador no tiene PlayerResources");
+        }
+
+        if (!CanInteractByTime())
+        {
+            repairTextObject.SetActive(false);
+            return;
         }
 
         // Mostrar el texto SOLO si la estructura no está completa
@@ -154,6 +178,11 @@ public class StructureHealth : MonoBehaviour
         {
             repairTextObject.SetActive(false);
         }
+    }
+
+        private bool CanInteractByTime()
+    {
+        return dayNiightManager != null && dayNiightManager.CurrentState == DayNiightManager.DayNightState.Day;
     }
 
 }
