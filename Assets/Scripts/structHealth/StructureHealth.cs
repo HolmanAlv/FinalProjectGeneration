@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StructureHealth : MonoBehaviour
 {
+    public bool isDestoyed = false;
     public float maxHealth = 100f;
     public float currentHealth;
 
@@ -68,7 +69,7 @@ public class StructureHealth : MonoBehaviour
             mainHealth.TakeDamage(damage / 4f);
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDestoyed)
         {
             DestroyStructure();
         }
@@ -137,6 +138,7 @@ public class StructureHealth : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        isDestoyed = true;
     }
 
     private void OnTriggerEnter(Collider other)

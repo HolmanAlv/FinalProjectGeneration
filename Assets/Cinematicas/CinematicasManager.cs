@@ -3,6 +3,7 @@ using UnityEngine.Playables;
 
 public class CinematicasManager : MonoBehaviour
 {
+    public GameObject[] Structures;
     public DayNiightManager dayNightManager;
 
     [Tooltip("Objetos que se desactivan durante las cinemáticas, no todos deben ser desactivados, solo los que afectan a la visualización de las cinemáticas")]
@@ -62,6 +63,10 @@ public class CinematicasManager : MonoBehaviour
             {
                 if (obj != null) obj.SetActive(false);
             }
+            foreach (GameObject obj in Structures)
+            {
+                if (obj != null) obj.SetActive(true);
+            }
             
             sceneObjectGameOver.SetActive(true);
             sceneGameOver.Play();
@@ -99,6 +104,8 @@ public class CinematicasManager : MonoBehaviour
                     isPlaying = false;
                     step = 0;
                     Debug.Log("Cinemáticas terminadas, el jugador ha ganado");
+                    GameWin = false;
+                    GameOver = false;
                     //Aqui activar el menu de win
 
                 }
@@ -112,6 +119,8 @@ public class CinematicasManager : MonoBehaviour
                     isPlaying = false;
                     step = 0;
                     Debug.Log("Cinemáticas terminadas, el jugador ha perdido");
+                    GameWin = false;
+                    GameOver = false;
                     //Aqui activar el menu de lose
                 }
             }
