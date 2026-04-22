@@ -7,6 +7,8 @@ public class MainHealth : MonoBehaviour
 
     public MainHealthUI healthUI;
 
+    public CinematicasManager cinematicasManager;
+
     void Start()
     {
         if (NewOrLoad.Instance != null && !NewOrLoad.Instance.loadGame)
@@ -51,6 +53,6 @@ public class MainHealth : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("GAME OVER");
+        cinematicasManager.GameOver = true;
     }
 }
