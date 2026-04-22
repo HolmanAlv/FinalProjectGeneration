@@ -56,12 +56,18 @@ public class DayNiightManager : MonoBehaviour
 
     private Coroutine cycleCoroutine;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
         if (startNightButton != null)
         {
             startNightButton.onClick.AddListener(StartNightCycle);
         }
+
+
     }
 
     private void Start()
@@ -80,7 +86,12 @@ public class DayNiightManager : MonoBehaviour
 
     public void StartNightCycle()
     {
-        
+        // Musica de noche
+        if(audioManager.musicSource.isPlaying)
+        {
+            audioManager.StopMusic(0.5f);
+        }
+        audioManager.PlayMusic("night_01");
 
         if (currentState != DayNightState.Day)
             return;
@@ -196,6 +207,14 @@ public class DayNiightManager : MonoBehaviour
 
     private void ApplyDayInstant()
     {
+        // Musica de dia
+        if (audioManager.musicSource.isPlaying)
+        {
+            audioManager.StopMusic(1f);
+        }
+        audioManager.PlayMusic("day_01");
+        audioManager.PlayAmbience("bir");
+
         if (directionalLight != null)
         {
             directionalLight.intensity = dayLightIntensity;
