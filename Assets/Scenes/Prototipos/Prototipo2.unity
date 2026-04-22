@@ -11694,6 +11694,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fd5be61d8c00de419d45d6bf745a69c, type: 3}
+--- !u!114 &733668246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 269972174013165505, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+  m_PrefabInstance: {fileID: 1429546811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3621f47e8cd32f84d8720eaf111125e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!4 &746932920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4202655646031778, guid: 144403e0e442d2a448335e0c845d665b, type: 3}
@@ -29201,6 +29212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6113013178913948116, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9038514876952654176, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.37935
@@ -44031,6 +44046,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 733668246}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: StopMusic
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1626497622}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: IrAlMenuprincipal
