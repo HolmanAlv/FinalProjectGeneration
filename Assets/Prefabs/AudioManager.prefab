@@ -701,13 +701,13 @@ MonoBehaviour:
   uiSource: {fileID: 5710612402641939969}
   musicClips:
   - name: day_01
-    clip: {fileID: 8300000, guid: 473e649f26c91c84d856dde997905c85, type: 3}
-  - name: day_02
-    clip: {fileID: 8300000, guid: bce273e236c7ef447a80c4fa87e37915, type: 3}
-  - name: day_03
-    clip: {fileID: 8300000, guid: b721c5f046f709846804cdd7ea618bc5, type: 3}
+    clip: {fileID: 8300000, guid: 4dd92abffe6676c4b97e5e7ea7929b67, type: 3}
   - name: night_01
-    clip: {fileID: 8300000, guid: c4e8b2ff6f30748409e30a48276a89e4, type: 3}
+    clip: {fileID: 8300000, guid: 50cb0e4ee256225429a08048a84dcded, type: 3}
+  - name: main_menu
+    clip: {fileID: 8300000, guid: d833013d5c6440f4ea4daf21d8cb1fe9, type: 3}
+  - name: 
+    clip: {fileID: 0}
   - name: 
     clip: {fileID: 0}
   ambientClips:

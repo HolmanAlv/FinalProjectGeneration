@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayMusic("endy");
+        //PlayMusic(AudioManager.Instance.musicClips[0].name);
     }
 
     Dictionary<string, AudioClip> LoadDict(List<SoundEntry> entries)

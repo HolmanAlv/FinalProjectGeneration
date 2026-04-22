@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+
+    public void Start()
+    {
+        AudioManager.Instance.PlayMusic("main_menu");
+    }
     // Función para "Nueva partida"
     public void NuevaPartida()
     {
