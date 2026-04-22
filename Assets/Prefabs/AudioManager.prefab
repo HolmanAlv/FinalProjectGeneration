@@ -752,3 +752,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 454da8d312c5cab42abab9216aeac05a, type: 3}
   - name: next_tutorial
     clip: {fileID: 8300000, guid: cf0019216c5af314d8aff35b7227ebe2, type: 3}
+  - name: click_01
+    clip: {fileID: 8300000, guid: 4314a8d51450d7b4fa4070c1c4f80387, type: 3}
+  - name: click_02
+    clip: {fileID: 8300000, guid: e4497603a8ab97549b2f8bdc6bc8b2e2, type: 3}
