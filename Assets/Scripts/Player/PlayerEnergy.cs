@@ -7,6 +7,10 @@ public class PlayerEnergy : MonoBehaviour
     public int currentEnergy = 0;
 
     public UIManager uIManager;
+    public void Start()
+    {
+        uIManager.UpdateEnergy(currentEnergy);
+    }
 
     public bool HasEnoughEnergy(int amount)
     {

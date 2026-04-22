@@ -9,7 +9,10 @@ public class MainHealth : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        if (NewOrLoad.Instance != null && !NewOrLoad.Instance.loadGame)
+        {
+           currentHealth = maxHealth;
+        }
         if (healthUI != null)
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);

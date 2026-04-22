@@ -7,6 +7,7 @@ public class DataGame
     public int numberWood;
     public int numberStone;
     public int numberDay;
+    public int numberNight;
 
     public bool activeStructure1;
     public bool activeStructure2;

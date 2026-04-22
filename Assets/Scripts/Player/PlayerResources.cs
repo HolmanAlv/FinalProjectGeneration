@@ -9,6 +9,11 @@ public class PlayerResources : MonoBehaviour
 
     public UIManager uIManager;
 
+    public void Start()
+    {
+        uIManager.UpdateWood(wood);
+        uIManager.UpdateStone(stone);
+    }
 
     public void AddWood(int amount)
     {

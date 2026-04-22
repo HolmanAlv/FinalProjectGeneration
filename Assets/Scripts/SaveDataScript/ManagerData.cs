@@ -46,6 +46,7 @@ public class ManagerData : MonoBehaviour
             playerResources.wood = dataGame.numberWood;
             playerResources.stone = dataGame.numberStone;
             dayNiightManager.completedNights = dataGame.numberDay;
+            dayNiightManager.currentNightNumber = dataGame.numberNight;
 
             structure1.SetActive(dataGame.activeStructure1);
             structureHealth1.currentHealth = dataGame.lifeStructure1;
@@ -76,6 +77,7 @@ public class ManagerData : MonoBehaviour
         dataGame.numberWood = playerResources.wood;
         dataGame.numberStone = playerResources.stone;
         dataGame.numberDay = dayNiightManager.completedNights;
+        dataGame.numberNight = dayNiightManager.currentNightNumber;
 
         dataGame.activeStructure1 = structure1.activeSelf;
         dataGame.lifeStructure1 = structureHealth1.currentHealth;

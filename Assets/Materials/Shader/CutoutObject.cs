@@ -25,48 +25,56 @@ public class CutoutObject : MonoBehaviour
     }
     
     private void Update()
+{
+    if (targetObject == null || mainCamera == null) return;
+
+    Vector3 targetPosition = targetObject.position + targetOffset;
+
+    Vector3 rayOrigin = mainCamera.transform.position;
+    Vector3 direction = targetPosition - rayOrigin;
+    float distance = direction.magnitude;
+    
+    RaycastHit[] hitObjects = Physics.SphereCastAll(
+        rayOrigin, 
+        sphereCastRadius, 
+        direction.normalized, 
+        distance, 
+        wallMask,
+        QueryTriggerInteraction.Ignore
+    );
+    
+    System.Array.Sort(hitObjects, (a, b) => a.distance.CompareTo(b.distance));
+    
+    List<Renderer> currentlyHitRenderers = new List<Renderer>();
+    
+    for (int i = 0; i < hitObjects.Length; i++)
     {
-        if (targetObject == null || mainCamera == null) return;
-
-        Vector3 targetPosition = targetObject.position + targetOffset;
-
-        Vector3 rayOrigin = mainCamera.transform.position;
-        Vector3 direction = targetPosition - rayOrigin;
-        float distance = direction.magnitude;
-        
-        RaycastHit[] hitObjects = Physics.SphereCastAll(rayOrigin, sphereCastRadius, direction.normalized, distance, wallMask);
-        System.Array.Sort(hitObjects, (a, b) => a.distance.CompareTo(b.distance));
-        
-        List<Renderer> currentlyHitRenderers = new List<Renderer>();
-        
-        for (int i = 0; i < hitObjects.Length; i++)
+        Renderer renderer = hitObjects[i].transform.GetComponent<Renderer>();
+        if (renderer != null)
         {
-            Renderer renderer = hitObjects[i].transform.GetComponent<Renderer>();
-            if (renderer != null)
+            currentlyHitRenderers.Add(renderer);
+            
+            Material[] materials = renderer.materials;
+            for (int n = 0; n < materials.Length; n++)
             {
-                currentlyHitRenderers.Add(renderer);
-                
-                Material[] materials = renderer.materials;
-                for (int n = 0; n < materials.Length; n++)
-                {
-                    materials[n].SetVector("_CutoutPos", cutoutPos);
-                    materials[n].SetFloat("_CutoutSize", cutoutSize);
-                    materials[n].SetFloat("_FalloffSize", falloffSize);
-                }
+                materials[n].SetVector("_CutoutPos", cutoutPos);
+                materials[n].SetFloat("_CutoutSize", cutoutSize);
+                materials[n].SetFloat("_FalloffSize", falloffSize);
             }
         }
-
-        foreach (Renderer renderer in lastSeenRenderers)
-        {
-            if (renderer != null && !currentlyHitRenderers.Contains(renderer))
-            {
-                Material[] materials = renderer.materials;
-                for (int n = 0; n < materials.Length; n++)
-                {
-                    materials[n].SetFloat("_CutoutSize", 0f);
-                }
-            }
-        }
-        lastSeenRenderers = currentlyHitRenderers;
     }
+
+    foreach (Renderer renderer in lastSeenRenderers)
+    {
+        if (renderer != null && !currentlyHitRenderers.Contains(renderer))
+        {
+            Material[] materials = renderer.materials;
+            for (int n = 0; n < materials.Length; n++)
+            {
+                materials[n].SetFloat("_CutoutSize", 0f);
+            }
+        }
+    }
+    lastSeenRenderers = currentlyHitRenderers;
+}
 }

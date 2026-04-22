@@ -48,7 +48,7 @@ public class DayNiightManager : MonoBehaviour
     public event Action<int> OnNightStarted;
     public event Action OnTransitionToDayStarted;
 
-    [SerializeField] private int currentNightNumber = 0;
+    [SerializeField] public int currentNightNumber = 0;
     public int completedNights = 0;
 
     public int CurrentNightNumber => currentNightNumber;// mirar si esto no se puede hacer con set y get

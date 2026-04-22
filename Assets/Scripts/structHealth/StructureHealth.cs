@@ -33,8 +33,10 @@ public class StructureHealth : MonoBehaviour
         {
             Debug.LogError("DayNightManager no encontrado en la escena");
         }
-
-        currentHealth = maxHealth;
+        if (NewOrLoad.Instance != null && !NewOrLoad.Instance.loadGame)
+        {
+           currentHealth = maxHealth;
+        }
 
         if (healthUI != null)
         {

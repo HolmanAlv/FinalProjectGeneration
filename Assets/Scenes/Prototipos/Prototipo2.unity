@@ -8598,7 +8598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
   maxHealth: 100
   currentHealth: 0
-  mainHealth: {fileID: 0}
+  mainHealth: {fileID: 460829952}
   healthUI: {fileID: 1272116172}
   woodRequired: 1
   stoneRequired: 0
@@ -9789,6 +9789,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c229022e6ea9c44ca48d6c12048f1bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1197987947}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c229022e6ea9c44ca48d6c12048f1bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1197987949}
   m_SourcePrefab: {fileID: 100100000, guid: 0c229022e6ea9c44ca48d6c12048f1bb, type: 3}
 --- !u!4 &1197987945 stripped
 Transform:
@@ -9835,12 +9838,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
   maxHealth: 100
   currentHealth: 0
-  mainHealth: {fileID: 0}
+  mainHealth: {fileID: 460829952}
   healthUI: {fileID: 1816476299}
   woodRequired: 1
   stoneRequired: 0
   repairAmount: 10
   repairTextObject: {fileID: 1786696447}
+--- !u!64 &1197987949
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197987946}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4259980055939027005, guid: 0c229022e6ea9c44ca48d6c12048f1bb, type: 3}
 --- !u!1 &1201690631
 GameObject:
   m_ObjectHideFlags: 0
@@ -11913,6 +11938,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b8266fcc185c134c81646f7e48152fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1403721745}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b8266fcc185c134c81646f7e48152fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403721747}
   m_SourcePrefab: {fileID: 100100000, guid: 3b8266fcc185c134c81646f7e48152fe, type: 3}
 --- !u!4 &1403721743 stripped
 Transform:
@@ -11959,12 +11987,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
   maxHealth: 100
   currentHealth: 0
-  mainHealth: {fileID: 0}
+  mainHealth: {fileID: 460829952}
   healthUI: {fileID: 712392333}
   woodRequired: 1
   stoneRequired: 0
   repairAmount: 10
   repairTextObject: {fileID: 1339998772}
+--- !u!64 &1403721747
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403721744}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7507161260596006292, guid: 3b8266fcc185c134c81646f7e48152fe, type: 3}
 --- !u!4 &1407808267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4237626469908324, guid: af46e0e24402dfa49aea336191bc47ab, type: 3}
@@ -12414,6 +12464,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa3ad334571e5fc42bc1dff9ac0853ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1456752813}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa3ad334571e5fc42bc1dff9ac0853ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1456752815}
   m_SourcePrefab: {fileID: 100100000, guid: aa3ad334571e5fc42bc1dff9ac0853ac, type: 3}
 --- !u!4 &1456752811 stripped
 Transform:
@@ -12460,12 +12513,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
   maxHealth: 100
   currentHealth: 0
-  mainHealth: {fileID: 0}
+  mainHealth: {fileID: 460829952}
   healthUI: {fileID: 1563705624}
   woodRequired: 1
   stoneRequired: 0
   repairAmount: 10
   repairTextObject: {fileID: 1872939072}
+--- !u!64 &1456752815
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456752812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4576464562202209898, guid: aa3ad334571e5fc42bc1dff9ac0853ac, type: 3}
 --- !u!1 &1480608693
 GameObject:
   m_ObjectHideFlags: 0
@@ -15469,14 +15544,14 @@ MonoBehaviour:
   playerEnergy: {fileID: 2030331729953592028}
   playerResources: {fileID: 2030331729953592027}
   dayNiightManager: {fileID: 55708951}
-  structure1: {fileID: 0}
-  structureHealth1: {fileID: 0}
-  structure2: {fileID: 0}
-  structureHealth2: {fileID: 0}
-  structure3: {fileID: 0}
-  structureHealth3: {fileID: 0}
-  structure4: {fileID: 0}
-  structureHealth4: {fileID: 0}
+  structure1: {fileID: 1068989840}
+  structureHealth1: {fileID: 1068989842}
+  structure2: {fileID: 1456752812}
+  structureHealth2: {fileID: 1456752814}
+  structure3: {fileID: 1403721744}
+  structureHealth3: {fileID: 1403721746}
+  structure4: {fileID: 1197987946}
+  structureHealth4: {fileID: 1197987948}
   mainHealth: {fileID: 460829952}
 --- !u!1 &1779562226
 GameObject:
