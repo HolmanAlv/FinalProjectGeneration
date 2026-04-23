@@ -11746,6 +11746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d0e1a80cad4d943a1bfdefe108e4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinematicasManager
+  Structures: []
   dayNightManager: {fileID: 55708951}
   noView:
   - {fileID: 122536451863995309}
@@ -19939,6 +19940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -24963,6 +24965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -28322,6 +28325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -29545,6 +29549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -34445,7 +34450,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Salir al menu
+  m_text: 'MENU
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -45753,7 +45760,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cambiar
+  m_text: 'Noche!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
