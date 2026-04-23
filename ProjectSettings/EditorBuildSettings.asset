@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: d3dbd50b6400896489609400b49fb5d6
   - enabled: 1
-    path: Assets/Scenes/Prototipos/GameplayPrototipo1.unity
-    guid: 06a60083f25f5bc4f9a6bea64cc360bd
+    path: Assets/Scenes/Individual/Tutorial.unity
+    guid: 6246f91094d4aad4599e71891da38ff8
   - enabled: 1
     path: Assets/Scenes/Prototipos/Prototipo2.unity
     guid: 56aa97cddfd69b045ab739e268f4c77f
-  - enabled: 1
-    path: Assets/Scenes/Individual/Tutorial.unity
-    guid: 6246f91094d4aad4599e71891da38ff8
+  - enabled: 0
+    path: Assets/Scenes/Prototipos/GameplayPrototipo1.unity
+    guid: 06a60083f25f5bc4f9a6bea64cc360bd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
