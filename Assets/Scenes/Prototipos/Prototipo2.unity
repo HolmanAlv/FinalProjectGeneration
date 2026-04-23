@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.09803922, g: 0.10690074, b: 0.34117648, a: 1}
+  m_AmbientEquatorColor: {r: 0.10609222, g: 0.09678712, b: 0.2735849, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_AmbientMode: 1
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -3954,11 +3954,13 @@ PlayableDirector:
   - key: {fileID: -5082356570264186438, guid: 558ead70971364d42b1b852f2047bbc6, type: 2}
     value: {fileID: 1139131186}
   - key: {fileID: -4982427032983687501, guid: 558ead70971364d42b1b852f2047bbc6, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1429546812}
   - key: {fileID: -215951336182609155, guid: 558ead70971364d42b1b852f2047bbc6, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1429546812}
   - key: {fileID: 2630769538952068238, guid: 558ead70971364d42b1b852f2047bbc6, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1429546814}
+  - key: {fileID: 2115513277155674867, guid: 558ead70971364d42b1b852f2047bbc6, type: 2}
+    value: {fileID: 1429546813}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &238878186
@@ -11585,7 +11587,12 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tTransform
+    'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -11739,6 +11746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d0e1a80cad4d943a1bfdefe108e4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinematicasManager
+  Structures: []
   dayNightManager: {fileID: 55708951}
   noView:
   - {fileID: 122536451863995309}
@@ -14959,7 +14967,12 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tTransform
+    'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -19927,6 +19940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -23270,7 +23284,12 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tTransform
+    'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -24946,6 +24965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -28305,6 +28325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -29214,7 +29235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6113013178913948116, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9038514876952654176, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29261,6 +29282,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+--- !u!82 &1429546812 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6147175568850025868, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+  m_PrefabInstance: {fileID: 1429546811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1429546813 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5967866319094934139, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+  m_PrefabInstance: {fileID: 1429546811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1429546814 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8198713547129103452, guid: 756acd0a008fdc548a1bdd683f20589a, type: 3}
+  m_PrefabInstance: {fileID: 1429546811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1436962325
 GameObject:
   m_ObjectHideFlags: 0
@@ -29513,6 +29549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a2ae2b3d365f4c979b0fd7d9bd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StructureHealth
+  isDestoyed: 0
   maxHealth: 100
   currentHealth: 0
   mainHealth: {fileID: 460829952}
@@ -34413,7 +34450,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Salir al menu
+  m_text: 'MENU
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -38138,7 +38177,11 @@ PlayableDirector:
   - key: {fileID: 3031115418964508755, guid: 5771e27117655434eadb34eddac441b7, type: 2}
     value: {fileID: 916110670}
   - key: {fileID: 2484713300300969417, guid: 5771e27117655434eadb34eddac441b7, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1429546812}
+  - key: {fileID: 4876571827708646617, guid: 5771e27117655434eadb34eddac441b7, type: 2}
+    value: {fileID: 1429546813}
+  - key: {fileID: -8676496796854046330, guid: 5771e27117655434eadb34eddac441b7, type: 2}
+    value: {fileID: 1429546813}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1871237599
@@ -41095,7 +41138,12 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tTransform
+    'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -45712,7 +45760,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cambiar
+  m_text: 'Noche!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

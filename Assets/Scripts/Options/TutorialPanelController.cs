@@ -67,6 +67,7 @@ public class TutorialPanelController : MonoBehaviour
             return;
         }
 
+        AudioManager.Instance.PlayUI("next_tutorial");
         currentPage++;
         ShowPage(currentPage);
     }

@@ -11,7 +11,7 @@ public class MainHealth : MonoBehaviour
 
     void Start()
     {
-        if (NewOrLoad.Instance != null && !NewOrLoad.Instance.loadGame)
+        if (NewOrLoad.Instance == null || !NewOrLoad.Instance.loadGame)
         {
            currentHealth = maxHealth;
         }

@@ -38,6 +38,7 @@ public class HoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // Activa outline del sprite
         outline.enabled = true;
+        AudioManager.Instance.PlayUI("hover_sound");
 
         // Texto negro con outline blanco
         if (label != null)
