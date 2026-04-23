@@ -5,6 +5,7 @@ using System.Collections;
 public class LifeBarEnemy : MonoBehaviour
 {
     [Header("Referencias")]
+    public CinematicasManager cinematicasManager;
     public EnemyBehaviour enemyBehaviour;
     public GameObject enemyHeader;
     public Canvas canvas;
@@ -56,6 +57,10 @@ public class LifeBarEnemy : MonoBehaviour
             PowerBehaviour powerBehaviour = power.GetComponent<PowerBehaviour>();
             powerBehaviour.ExitTheFather();
             Destroy(enemyHeader);
+        }
+        if (cinematicasManager.GameOver || cinematicasManager.GameWin)
+        {
+            RemoveByDayTransition();
         }
     }
 
