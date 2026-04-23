@@ -9,6 +9,7 @@ TagManager:
   - Arma
   - Continue
   - NewGame
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ground
   - Cinematicas
   - WallCutout
-  - 
+  - NoViewMainCamera
   - 
   - 
   - 
