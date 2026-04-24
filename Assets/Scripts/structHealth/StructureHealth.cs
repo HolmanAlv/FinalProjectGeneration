@@ -132,6 +132,7 @@ public class StructureHealth : MonoBehaviour
 
     void DestroyStructure()
     {
+        AudioManager.Instance.PlaySFX("destroy_structure");
         Debug.Log(gameObject.name + " destruida");
 
         if (repairTextObject != null)
