@@ -24,6 +24,7 @@ public class ChangeScene : MonoBehaviour
 
     public void IrAlMenuprincipal()
     {
+        AudioManager.Instance.StopAllSounds();
         SceneManager.LoadScene("MainMenu");
     }
 }

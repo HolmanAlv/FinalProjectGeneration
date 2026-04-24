@@ -56,8 +56,6 @@ public class DayNiightManager : MonoBehaviour
 
     private Coroutine cycleCoroutine;
 
-    private AudioManager audioManager;
-
     public static DayNiightManager Instance;
 
     private void Awake()
@@ -72,9 +70,6 @@ public class DayNiightManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         if (startNightButton != null)
         {
@@ -100,12 +95,17 @@ public class DayNiightManager : MonoBehaviour
 
     public void StartNightCycle()
     {
-        // Musica de noche
-        if(audioManager.musicSource.isPlaying)
+        // Audio de la noche
+        if(AudioManager.Instance.musicSource.isPlaying)
         {
-            audioManager.StopMusic(0.5f);
+            AudioManager.Instance.StopMusic(0.5f);
+            AudioManager.Instance.StopAmbientSpot();
+            AudioManager.Instance.StopAmbience();
         }
-        audioManager.PlayMusic("night_01");
+        AudioManager.Instance.PlayMusic("night_01");
+        AudioManager.Instance.PlayAmbientSpot("heartbeat");
+        AudioManager.Instance.PlayAmbience("wind_night");
+
 
         if (currentState != DayNightState.Day)
             return;
@@ -221,13 +221,17 @@ public class DayNiightManager : MonoBehaviour
 
     private void ApplyDayInstant()
     {
-        // Musica de dia
-        if (audioManager.musicSource.isPlaying)
+        // Audio del dia
+        if (AudioManager.Instance.musicSource.isPlaying)
         {
-            audioManager.StopMusic(1f);
+            AudioManager.Instance.StopMusic(1f);
+            AudioManager.Instance.StopAmbience();
+            AudioManager.Instance.StopAmbientSpot();
         }
-        audioManager.PlayMusic("day_01");
-        audioManager.PlayAmbience("bir");
+        AudioManager.Instance.PlayMusic("day_01");
+        AudioManager.Instance.PlayAmbientSpot("river");
+        AudioManager.Instance.PlayAmbience("birds");
+        AudioManager.Instance.PlaySFX("day_start");
 
         if (directionalLight != null)
         {

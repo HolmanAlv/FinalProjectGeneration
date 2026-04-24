@@ -17,6 +17,7 @@ public class PlayerResources : MonoBehaviour
 
     public void AddWood(int amount)
     {
+        AudioManager.Instance.PlaySFX("collect_wood");
         wood += amount;
         uIManager.UpdateWood(wood);
         Debug.Log("cantidad de madera:" + wood);
@@ -24,6 +25,7 @@ public class PlayerResources : MonoBehaviour
 
     public void AddStone(int amount)
     {
+        AudioManager.Instance.PlaySFX("collect_stone");
         stone += amount;
         uIManager.UpdateStone(stone);
 

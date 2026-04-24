@@ -122,6 +122,7 @@ public class InteractableResources : MonoBehaviour
 
         if (!playerEnergy.ConsumeEnergy(energyCost))
         {
+            AudioManager.Instance.PlaySFX("no");
             Debug.Log("Energía insuficiente");
             return;
         }

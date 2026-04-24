@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 876068521262942457}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1782297888714812226, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -170,7 +170,7 @@ AudioSource:
   m_GameObject: {fileID: 1179003924092339560}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8601836187754163084, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -299,7 +299,7 @@ AudioSource:
   m_GameObject: {fileID: 1393129564246615361}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3264292839595773225, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -428,13 +428,13 @@ AudioSource:
   m_GameObject: {fileID: 2362312935355296806}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5536138537038731684, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -557,7 +557,7 @@ AudioSource:
   m_GameObject: {fileID: 4067201268488376295}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6307354632928625634, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -706,45 +706,43 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 50cb0e4ee256225429a08048a84dcded, type: 3}
   - name: main_menu
     clip: {fileID: 8300000, guid: d833013d5c6440f4ea4daf21d8cb1fe9, type: 3}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
   ambientClips:
-  - name: 
-    clip: {fileID: 8300000, guid: a67e79ed2b7f8f1458d7bc6ed5c70b4b, type: 3}
-  - name: 
+  - name: birds
+    clip: {fileID: 8300000, guid: 291442469ac1e44438b8bde2ae1bbf3e, type: 3}
+  - name: birds2
     clip: {fileID: 8300000, guid: b65da56f154b6f34c8a8d4a188775045, type: 3}
-  - name: 
+  - name: lake
     clip: {fileID: 8300000, guid: 2fb07f90c600de147867d8bcebd1b38d, type: 3}
-  - name: 
+  - name: rain_wind
     clip: {fileID: 8300000, guid: 75dc14d117703e74f8934a385f585611, type: 3}
-  - name: 
+  - name: raven1
     clip: {fileID: 8300000, guid: fafecf2d38409df42976fcb850c5d404, type: 3}
-  - name: 
+  - name: raven2
     clip: {fileID: 8300000, guid: 98f635286aeb94f4e8595b96dd823cea, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: dfc6742262a93ab469c6d677717cb17c, type: 3}
-  - name: 
+  - name: wind_night
     clip: {fileID: 8300000, guid: 94f50279c76424540b54db0d5e092a0a, type: 3}
-  ambientSpotClips: []
+  ambientSpotClips:
+  - name: river
+    clip: {fileID: 8300000, guid: dfc6742262a93ab469c6d677717cb17c, type: 3}
+  - name: heartbeat
+    clip: {fileID: 8300000, guid: 1aa384b2fe340754e8b5da72135c5457, type: 3}
   sfxClips:
-  - name: 
-    clip: {fileID: 8300000, guid: c2066793590f89448b4d20ab0be79ff7, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: 75806ce40f76969488d78aa36b185618, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: fc702d95b215cc647a963dd407165383, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: 50f4ed0ca855b484dbdef44c8b95b1ea, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: ba933f1125e4bed4581d65b320a7e554, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: a25a4a3ffa26d7347bebc6697a67dcaa, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: c4e8b2ff6f30748409e30a48276a89e4, type: 3}
-  - name: 
-    clip: {fileID: 8300000, guid: 56c73e222000f55428ed38ca23b4b872, type: 3}
+  - name: PlayerAttack
+    clip: {fileID: 8300000, guid: 82d8060d497a0e5469331d7f37d63725, type: 3}
+  - name: collect_energy
+    clip: {fileID: 8300000, guid: bee5db198ac0a564c9daacb65bb7d0fd, type: 3}
+  - name: day_start
+    clip: {fileID: 8300000, guid: 7c67366389b69de4fbdc2c510b883d3d, type: 3}
+  - name: collect_stone
+    clip: {fileID: 8300000, guid: eb404f38ab20a554095bf74f55dfba98, type: 3}
+  - name: collect_wood
+    clip: {fileID: 8300000, guid: 0da704846befa4945bba820e89c7acb3, type: 3}
+  - name: repair_structure
+    clip: {fileID: 8300000, guid: 7e5335a294f2a054884ec7e3bb0a00c0, type: 3}
+  - name: no
+    clip: {fileID: 8300000, guid: 819a62f045597954aa169ee4a027d7f8, type: 3}
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 86127bda0066a3247a324403af96b5cf, type: 3}
   - name: 
     clip: {fileID: 8300000, guid: 58e63938d9b2c1a4495cbb377892d528, type: 3}
   uiClips:

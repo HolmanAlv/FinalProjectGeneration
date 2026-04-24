@@ -12,6 +12,7 @@ public class PowerBehaviour : MonoBehaviour
 
             if (playerEnergy != null)
             {
+                AudioManager.Instance.PlaySFX("collect_energy");
                 playerEnergy.AddEnergy(energyAmount);
                 Debug.Log("energiarecoelctada" + energyAmount);
             }
