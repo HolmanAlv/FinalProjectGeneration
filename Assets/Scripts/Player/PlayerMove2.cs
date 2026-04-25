@@ -29,6 +29,15 @@ public class PlayerMove2 : MonoBehaviour
     [SerializeField] private bool isAttacking;
     private bool enemyInRange;
 
+
+
+    [Header("Footsteps")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip[] footstepClips;
+    [SerializeField] private float stepInterval = 0.35f;
+    [SerializeField] private float footstepVolume = 0.7f;
+
+    private float stepTimer;
     void Awake()
     {
         moveAction = playerInput.actions["Move"];
@@ -72,6 +81,7 @@ public class PlayerMove2 : MonoBehaviour
     if (!isAttacking)
         {
             Vector2 input = moveAction.ReadValue<Vector2>();
+            HandleFootsteps(input);
             Vector3 direction = right * input.x + forward * input.y;
 
             if (direction.magnitude > 1f)
@@ -114,7 +124,6 @@ public class PlayerMove2 : MonoBehaviour
 
     private void StartAttack ()
     {
-        
         RotateToMouse();
         isAttacking = true;
 
@@ -122,7 +131,7 @@ public class PlayerMove2 : MonoBehaviour
         animator.SetTrigger("Attack");
 
         Invoke(nameof(EndAttack), attackDuration);
-        
+        AudioManager.Instance.PlaySFX("PlayerAttack");
     }
 
     private void RotateToMouse()
@@ -162,6 +171,38 @@ public class PlayerMove2 : MonoBehaviour
     public void SetEnemyInRange(bool value)
     {
         enemyInRange = value;
+    }
+
+    private void HandleFootsteps(Vector2 input)
+    {
+        if (isAttacking)
+            return;
+
+        if (input.sqrMagnitude < 0.01f)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= stepInterval)
+        {
+            PlayFootstep();
+            stepTimer = 0f;
+        }
+}
+
+    private void PlayFootstep()
+    {
+        if (footstepClips == null || footstepClips.Length == 0)
+            return;
+
+        int index = UnityEngine.Random.Range(0, footstepClips.Length);
+        AudioClip clip = footstepClips[index];
+
+        footstepSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+        footstepSource.PlayOneShot(clip, footstepVolume);
     }
 
 }

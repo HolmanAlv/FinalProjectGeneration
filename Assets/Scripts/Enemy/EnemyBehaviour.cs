@@ -112,6 +112,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if (other.CompareTag("Arma") && lifeBarEnemy.puedeRecibirDaño)
         {
+            AudioManager.Instance.PlaySFX("EnemyHit");
             Debug.Log("Orale cocazo");
             lifeBarEnemy.RecibirDaño();
         }

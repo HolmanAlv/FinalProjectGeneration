@@ -66,6 +66,7 @@ public class CinematicasManager : MonoBehaviour
         sceneObjectLose.SetActive(true);
         durationSceneLose = (float)sceneLose.duration;
         sceneObjectLose.SetActive(false);
+
     }
 
     void Update()
@@ -87,6 +88,7 @@ public class CinematicasManager : MonoBehaviour
             }
             
             sceneObjectGameOver.SetActive(true);
+            AudioManager.Instance.StopAllSounds();
             sceneGameOver.Play();
         }
 

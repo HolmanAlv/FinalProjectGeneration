@@ -102,10 +102,12 @@ public class StructureHealth : MonoBehaviour
 
         if (!currentPlayerResources.ConsumeResources(woodRequired, stoneRequired))
         {
+            AudioManager.Instance.PlaySFX("no");
             Debug.Log("Materiales insuficientes");
             return;
         }
 
+        AudioManager.Instance.PlaySFX("repair_structure");
         float previousHealth = currentHealth;
 
         currentHealth += repairAmount;
@@ -130,6 +132,7 @@ public class StructureHealth : MonoBehaviour
 
     void DestroyStructure()
     {
+        AudioManager.Instance.PlaySFX("destroy_structure");
         Debug.Log(gameObject.name + " destruida");
 
         if (repairTextObject != null)
