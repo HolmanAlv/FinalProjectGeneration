@@ -48,7 +48,7 @@ public class DayNiightManager : MonoBehaviour
     public event Action<int> OnNightStarted;
     public event Action OnTransitionToDayStarted;
 
-    [SerializeField] public int currentNightNumber = 0;
+    public int currentNightNumber = 0;
     public int completedNights = 0;
 
     public int CurrentNightNumber => currentNightNumber;// mirar si esto no se puede hacer con set y get
@@ -57,12 +57,12 @@ public class DayNiightManager : MonoBehaviour
     private Coroutine cycleCoroutine;
 
     private AudioManager audioManager;
+    public UIManager uIManager;
 
-    public static DayNiightManager Instance;
+    public static DayNiightManager Instance; // lo instancie para no colcoarlo manualmente en todos
 
     private void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
@@ -165,7 +165,11 @@ public class DayNiightManager : MonoBehaviour
         completedNights = currentNightNumber;
         
         OnDayStarted?.Invoke();
+
+        uIManager.UpdateNigth(completedNights);
+
         Debug.Log("🌙 noxhes completadas " + completedNights);
+
 
         cycleCoroutine = null;
     }

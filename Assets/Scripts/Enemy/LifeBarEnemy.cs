@@ -5,7 +5,7 @@ using System.Collections;
 public class LifeBarEnemy : MonoBehaviour
 {
     [Header("Referencias")]
-    public CinematicasManager cinematicasManager;
+    private CinematicasManager cinematicasManager;
     public EnemyBehaviour enemyBehaviour;
     public GameObject enemyHeader;
     public Canvas canvas;
@@ -25,8 +25,19 @@ public class LifeBarEnemy : MonoBehaviour
     public bool isVisible = true;
     public bool puedeRecibirDaño = true;
 
+    
+
     void Start()
     {
+
+        cinematicasManager = CinematicasManager.Instance;
+
+        if (cinematicasManager == null)
+        {
+            Debug.LogError("CinemáticasManager no encontrada");
+        }
+    
+        
         power.SetActive(false);
         if (mainCamera == null) mainCamera = Camera.main;
     }

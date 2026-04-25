@@ -35,8 +35,26 @@ public class CinematicasManager : MonoBehaviour
     private bool isPlaying = false;
     private int step = 0;
 
+    public static CinematicasManager Instance;
+
+
+    void Awake()
+    {
+         if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+    }
     void Start()
     {
+
+    
         sceneObjectGameOver.SetActive(true);
         durationSceneGameOver = (float)sceneGameOver.duration;
         sceneObjectGameOver.SetActive(false);
