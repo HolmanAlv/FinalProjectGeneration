@@ -1,54 +1,29 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class OpcionesUI : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("UI - Ajustes")]
     public Slider sliderMusica;
-    public TMP_Dropdown dropdownResolucion;
+    public Toggle togglePantallaCompleta;
 
-    private Resolution[] resoluciones;
+    [Header("UI - Navegación")]
+    public GameObject contenedorMenuPrincipal;
+    public GameObject contenedorMenuPausa;
 
-    void Start()
+    private bool vieneDePausa = false;
+
+        void Start()
     {
-        ConfigurarMusica();
-        ConfigurarResoluciones();
+        ConfigurarPantalla(); // Primero pantalla (para que el Toggle se conecte)
+        ConfigurarMusica();   // Después música (aunque falle, no afecta el Toggle)
     }
 
+    // --- MÚSICA ---
     void ConfigurarMusica()
     {
-        // El "1f" al final es el valor que usará si NO encuentra nada guardado
-        float volumenGuardado = PlayerPrefs.GetFloat("MusicVolume", 1f); 
+        float volumenGuardado = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sliderMusica.value = volumenGuardado;
-    }
-    
-    void ConfigurarResoluciones()
-    {
-        dropdownResolucion.ClearOptions();
-
-        List<string> opciones = new List<string>()
-        {
-            "Pantalla Completa",
-            "1920 x 1080",
-            "1280 x 720",
-            "800 x 600"
-        };
-
-        resoluciones = new Resolution[]
-        {
-            new Resolution() { width = 1920, height = 1080 },
-            new Resolution() { width = 1920, height = 1080 },
-            new Resolution() { width = 1280, height = 720 },
-            new Resolution() { width = 800,  height = 600 }
-        };
-
-        dropdownResolucion.AddOptions(opciones);
-
-        int indiceGuardado = PlayerPrefs.GetInt("ResolutionIndex", 0);
-        dropdownResolucion.value = indiceGuardado;
-        dropdownResolucion.RefreshShownValue();
     }
 
     public void CambiarMusica(float valor)
@@ -57,13 +32,55 @@ public class OpcionesUI : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void CambiarResolucion(int indice)
+    // --- PANTALLA ---
+    void ConfigurarPantalla()
     {
-        Resolution res = resoluciones[indice];
-        bool esFullscreen = (indice == 0); // Solo la primera es pantalla completa
-        Screen.SetResolution(res.width, res.height, esFullscreen);
+        bool esFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
 
-        PlayerPrefs.SetInt("ResolutionIndex", indice);
+        togglePantallaCompleta.onValueChanged.RemoveListener(CambiarPantalla);
+        togglePantallaCompleta.isOn = esFullscreen;
+        togglePantallaCompleta.onValueChanged.AddListener(CambiarPantalla);
+
+        Screen.SetResolution(1920, 1080, esFullscreen);
+    }
+
+    public void CambiarPantalla(bool esFullscreen)
+    {
+        Debug.Log("Toggle recibió: " + esFullscreen); // ← ¿Qué valor llega?
+        Screen.SetResolution(1920, 1080, esFullscreen);
+        PlayerPrefs.SetInt("Fullscreen", esFullscreen ? 1 : 0);
         PlayerPrefs.Save();
+        Debug.Log(esFullscreen ? "🖥️ Pantalla Completa" : "🪟 Modo Ventana");
+    }
+
+    // --- NAVEGACIÓN ---
+    public void AbrirDesdeMenu()
+    {
+        vieneDePausa = false;
+        if (contenedorMenuPrincipal != null) contenedorMenuPrincipal.SetActive(false);
+        gameObject.SetActive(true);
+    }
+
+    public void AbrirDesdePausa()
+    {
+        vieneDePausa = true;
+        if (contenedorMenuPausa != null) contenedorMenuPausa.SetActive(false);
+        gameObject.SetActive(true);
+    }
+
+    public void BotonVolver()
+    {
+        gameObject.SetActive(false);
+
+        if (vieneDePausa)
+        {
+            if (contenedorMenuPausa != null) contenedorMenuPausa.SetActive(true);
+            Debug.Log("⬅️ Volviendo a Pausa");
+        }
+        else
+        {
+            if (contenedorMenuPrincipal != null) contenedorMenuPrincipal.SetActive(true);
+            Debug.Log("⬅️ Volviendo al Menú Principal");
+        }
     }
 }
