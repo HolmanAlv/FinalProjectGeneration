@@ -6,11 +6,24 @@ public class NewOrLoad : MonoBehaviour
 {
     public static NewOrLoad Instance { get; private set; }
     public bool loadGame;
-    public Button loadButton;
+    public Button loadButtonFuncional;
+    public bool buttonActive;
+    public GameObject loadButtonNoFuncional;
     public Button newButton;
+    private string saveFile;
+    private DataGame dataGame = new DataGame();
 
     void Awake()
     {
+        saveFile = Application.dataPath + "/dataGame.json";
+        if (File.Exists(saveFile))
+        {
+            buttonActive = true;
+        }
+        else
+        {
+            buttonActive = false;
+        }
         if (Instance == null)
         {
             Instance = this;
@@ -28,17 +41,19 @@ public class NewOrLoad : MonoBehaviour
         
         if (botonObj != null)
         {
-            loadButton = botonObj.GetComponent<Button>();
-            if (loadButton != null)
+            loadButtonFuncional = botonObj.GetComponent<Button>();
+            if (loadButtonFuncional != null)
             {
-                loadButton.onClick.RemoveAllListeners();
-                loadButton.onClick.AddListener(LoadGame);
+                loadButtonFuncional.onClick.RemoveAllListeners();
+                loadButtonFuncional.onClick.AddListener(LoadGame);
             }
         }
         else
         {
             Debug.Log("Botón con tag 'Continue' no encontrado en esta escena");
         }
+
+        loadButtonNoFuncional = GameObject.FindWithTag("ImgContinue");
         
         GameObject botonNewObj = GameObject.FindWithTag("NewGame");
         
@@ -54,6 +69,17 @@ public class NewOrLoad : MonoBehaviour
         else
         {
             Debug.Log("Botón con tag 'NewGame' no encontrado en esta escena Debuglog desde NewOrLoad");
+        }
+
+        if (loadButtonNoFuncional != null && loadButtonFuncional != null && !buttonActive)
+        {
+            botonObj.SetActive(false);
+            loadButtonNoFuncional.SetActive(true);
+        }
+        else if (loadButtonNoFuncional != null && loadButtonFuncional != null && buttonActive)
+        {
+            botonObj.SetActive(true);
+            loadButtonNoFuncional.SetActive(false);
         }
     }
     

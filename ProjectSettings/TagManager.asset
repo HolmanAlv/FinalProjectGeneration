@@ -10,6 +10,7 @@ TagManager:
   - Continue
   - NewGame
   - Audio
+  - ImgContinue
   layers:
   - Default
   - TransparentFX
