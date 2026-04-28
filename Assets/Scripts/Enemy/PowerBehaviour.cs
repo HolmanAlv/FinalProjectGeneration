@@ -4,7 +4,7 @@ public class PowerBehaviour : MonoBehaviour
 {
     public int energyAmount = 1;
 
-     private void OnCollisionEnter(Collision other) 
+     private void OnTriggerEnter(Collider other) 
      {
         if (other.gameObject.CompareTag("Player"))
         {

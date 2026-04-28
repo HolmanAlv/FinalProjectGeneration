@@ -666,10 +666,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNiightManager
   currentState: 0
   transitionToNightDuration: 3
-  nightDuration: 40
+  nightDuration: 20
+  dayDuration: 20
   transitionToDayDuration: 3
   directionalLight: {fileID: 1574983986}
-  startNightButton: {fileID: 1721480123}
   dayLightIntensity: 1.2
   dayLightColor: {r: 1, g: 0.95, b: 0.84, a: 1}
   dayAmbientColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
@@ -679,6 +679,7 @@ MonoBehaviour:
   nightLights: []
   currentNightNumber: 0
   completedNights: 0
+  uIManager: {fileID: 0}
 --- !u!4 &55708952
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,6 +2330,7 @@ MonoBehaviour:
   maxHealth: 1000
   currentHealth: 0
   healthUI: {fileID: 0}
+  cinematicasManager: {fileID: 0}
 --- !u!4 &278698282
 Transform:
   m_ObjectHideFlags: 0
@@ -14835,6 +14837,7 @@ MonoBehaviour:
   energyText: {fileID: 1356728110}
   woodText: {fileID: 177510510}
   stoneText: {fileID: 1366331020}
+  NigthsComplete: {fileID: 0}
 --- !u!4 &1783490077
 Transform:
   m_ObjectHideFlags: 0

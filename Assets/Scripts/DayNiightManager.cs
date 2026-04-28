@@ -20,11 +20,12 @@ public class DayNiightManager : MonoBehaviour
     [Header("Tiempos")]
     [SerializeField] private float transitionToNightDuration = 3f;
     public float nightDuration = 5.0f;
+    public float dayDuration = 20f;
     [SerializeField] private float transitionToDayDuration = 3f;
 
     [Header("Referencias principales")]
     [SerializeField] private Light directionalLight;
-    [SerializeField] private Button startNightButton;
+    //[SerializeField] private Button startNightButton;
 
     [Header("Luz de día")]
     [SerializeField] private float dayLightIntensity = 1.2f;
@@ -51,8 +52,13 @@ public class DayNiightManager : MonoBehaviour
     public int currentNightNumber = 0;
     public int completedNights = 0;
 
-    public int CurrentNightNumber => currentNightNumber;// mirar si esto no se puede hacer con set y get
+    // variable publicas pero no para edición
+    public int CurrentNightNumber => currentNightNumber;
     public int CompletedNights => completedNights;   
+    public float DayDuration => dayDuration;
+    public float TransitionToNightDuration => transitionToNightDuration;
+    public float NightDuration => nightDuration;
+    public float TransitionToDayDuration => transitionToDayDuration;
 
     private Coroutine cycleCoroutine;
 
@@ -72,10 +78,10 @@ public class DayNiightManager : MonoBehaviour
             return;
         }
 
-        if (startNightButton != null)
+        /*if (startNightButton != null)
         {
             startNightButton.onClick.AddListener(StartNightCycle);
-        }
+        }*/
 
 
     }
@@ -84,34 +90,6 @@ public class DayNiightManager : MonoBehaviour
     {
         ApplyDayInstant();
         SetState(DayNightState.Day);
-    }
-
-    private void OnDestroy()
-    {
-        if (startNightButton != null)
-        {
-            startNightButton.onClick.RemoveListener(StartNightCycle);
-        }
-    }
-
-    public void StartNightCycle()
-    {
-        // Audio de la noche
-        if(AudioManager.Instance.musicSource.isPlaying)
-        {
-            AudioManager.Instance.StopMusic(0.5f);
-            AudioManager.Instance.StopAmbientSpot();
-            AudioManager.Instance.StopAmbience();
-        }
-        AudioManager.Instance.PlayMusic("night_01");
-        AudioManager.Instance.PlayAmbientSpot("heartbeat");
-        AudioManager.Instance.PlayAmbience("wind_night");
-
-
-        if (currentState != DayNightState.Day)
-            return;
-            
-        currentNightNumber ++;
 
         if (cycleCoroutine != null)
         {
@@ -121,58 +99,106 @@ public class DayNiightManager : MonoBehaviour
         cycleCoroutine = StartCoroutine(DayNightCycleRoutine());
     }
 
+    
+
+    private void OnDestroy()
+    {
+        /*if (startNightButton != null)
+        {
+            startNightButton.onClick.RemoveListener(StartNightCycle);
+        }*/
+    }
+    private void PlayNightAudio()
+    {
+        if (AudioManager.Instance == null)
+            return;
+
+        if (AudioManager.Instance.musicSource.isPlaying)
+        {
+            AudioManager.Instance.StopMusic(0.5f);
+            AudioManager.Instance.StopAmbientSpot();
+            AudioManager.Instance.StopAmbience();
+        }
+
+        AudioManager.Instance.PlayMusic("night_01");
+        AudioManager.Instance.PlayAmbientSpot("heartbeat");
+        AudioManager.Instance.PlayAmbience("wind_night");
+    }
+
+    public void StartNightCycle()
+    {
+        Debug.LogWarning("StartNightCycle ya no se usa. El ciclo día/noche ahora es automático.");
+
+    }
+
     private IEnumerator DayNightCycleRoutine()
     {
-        SetState(DayNightState.TransitionToNight);
-        OnTransitionToNightStarted?.Invoke();
+        while (true)
+        {
+            // DÍA
+            ApplyDayInstant();
+            SetState(DayNightState.Day);
+            OnDayStarted?.Invoke();
 
-        //Esto ayuda a hacer un interpolado suave y permite una transición gradual
-        yield return StartCoroutine(TransitionLighting(
-            transitionToNightDuration,
-            dayLightIntensity,
-            nightLightIntensity,
-            dayLightColor,
-            nightLightColor,
-            dayAmbientColor,
-            nightAmbientColor,
-            false,
-            true
-        ));
+            Debug.Log("☀️ Día iniciado");
 
-        SetState(DayNightState.Night);
-        OnNightStarted?.Invoke(currentNightNumber);
-        Debug.Log("🌙 Iniciando noche: " + currentNightNumber);
+            yield return new WaitForSeconds(dayDuration);
 
+            // TRANSICIÓN A NOCHE
+            currentNightNumber++;
 
-        yield return new WaitForSeconds(nightDuration);
+            PlayNightAudio();
 
-        SetState(DayNightState.TransitionToDay);
-        OnTransitionToDayStarted?.Invoke();
+            SetState(DayNightState.TransitionToNight);
+            OnTransitionToNightStarted?.Invoke();
 
-        yield return StartCoroutine(TransitionLighting(
-            transitionToDayDuration,
-            nightLightIntensity,
-            dayLightIntensity,
-            nightLightColor,
-            dayLightColor,
-            nightAmbientColor,
-            dayAmbientColor,
-            true,
-            false
-        ));
+            yield return StartCoroutine(TransitionLighting(
+                transitionToNightDuration,
+                dayLightIntensity,
+                nightLightIntensity,
+                dayLightColor,
+                nightLightColor,
+                dayAmbientColor,
+                nightAmbientColor,
+                false,
+                true
+            ));
 
-        ApplyDayInstant();
-        SetState(DayNightState.Day);
-        completedNights = currentNightNumber;
-        
-        OnDayStarted?.Invoke();
+            // NOCHE
+            SetState(DayNightState.Night);
+            OnNightStarted?.Invoke(currentNightNumber);
 
-        uIManager.UpdateNigth(completedNights);
+            Debug.Log("🌙 Iniciando noche: " + currentNightNumber);
 
-        Debug.Log("🌙 noxhes completadas " + completedNights);
+            yield return new WaitForSeconds(nightDuration);
 
+            // TRANSICIÓN A DÍA
+            SetState(DayNightState.TransitionToDay);
+            OnTransitionToDayStarted?.Invoke();
 
-        cycleCoroutine = null;
+            yield return StartCoroutine(TransitionLighting(
+                transitionToDayDuration,
+                nightLightIntensity,
+                dayLightIntensity,
+                nightLightColor,
+                dayLightColor,
+                nightAmbientColor,
+                dayAmbientColor,
+                true,
+                false
+            ));
+
+            // FIN DE NOCHE
+            completedNights = currentNightNumber;
+
+            if (uIManager != null)
+            {
+                uIManager.UpdateNigth(completedNights);
+            }
+
+            Debug.Log("☀️ Noches completadas: " + completedNights);
+        }
+
     }
 
     private IEnumerator TransitionLighting(
@@ -277,17 +303,17 @@ public class DayNiightManager : MonoBehaviour
     private void SetState(DayNightState newState)
     {
         currentState = newState;
-        UpdateButtonState();
+        //UpdateButtonState();
     }
 
-    private void UpdateButtonState()
+    /*private void UpdateButtonState()
     {
         if (startNightButton == null)
             return;
 
         bool canStartNight = currentState == DayNightState.Day;
         startNightButton.interactable = canStartNight;
-    }
+    }*/
 
 #if UNITY_EDITOR
     [ContextMenu("Forzar Día")]

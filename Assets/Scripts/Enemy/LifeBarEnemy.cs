@@ -82,7 +82,7 @@ public class LifeBarEnemy : MonoBehaviour
 
 
 
-    public void RecibirDaño()
+    public void RecibirDaño(int damage)
     {
         if (!puedeRecibirDaño) return;
         
@@ -93,7 +93,8 @@ public class LifeBarEnemy : MonoBehaviour
             enemyBehaviour.anim.SetTrigger("Damage");
         }*/
 
-        currentHelth -= enemyBehaviour.dañoArma;
+        
+        currentHelth -= damage;
         Debug.Log("Vida enemigo: " + currentHelth);
 
         Invoke(nameof(ResetDaño), 0.75f);

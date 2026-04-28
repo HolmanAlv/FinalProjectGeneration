@@ -5,7 +5,7 @@ using System;
 public class InteractableResources : MonoBehaviour
 {
     
-     public enum ResourceType { Wood, Stone }
+    public enum ResourceType { Wood, Stone }
     public ResourceType resourceType;
 
     public int energyCost = 1;
@@ -13,17 +13,20 @@ public class InteractableResources : MonoBehaviour
     public float cooldownTime = 20f;
 
     public GameObject textRecolectar;
+    public GameObject insufficientMat;
     public GameObject textCooldown;
+
+    private bool showingInsufficient = false;
 
     private bool isAvailable = true;
     private float cooldownTimer;
 
-   private DayNiightManager dayNiightManager;
+    [Header("Modelos visuales")]
+    public GameObject modeloDisponible;
+    public GameObject modeloUsado;
 
-    private void Awake()
-    {
-        
-    }
+   private DayNiightManager dayNiightManager; // cuando es una instancia le quitamos el serializefield.
+
 
     private void Start()
     {
@@ -34,9 +37,12 @@ public class InteractableResources : MonoBehaviour
         {
             Debug.LogError("DayNightManager no encontrado en la escena");
         }
-        
+
         textRecolectar.SetActive(false);
         textCooldown.SetActive(false);
+        insufficientMat.SetActive(false);
+
+        UpdateModel();
     }
 
     private void Update()
@@ -49,6 +55,7 @@ public class InteractableResources : MonoBehaviour
             {
                 isAvailable = true;
                 cooldownTimer = 0f;
+                UpdateModel();
             }
         }
     }
@@ -80,6 +87,14 @@ public class InteractableResources : MonoBehaviour
 
     void UpdateUI()
     {
+         if (showingInsufficient)
+        {
+            textRecolectar.SetActive(false);
+            textCooldown.SetActive(false);
+            return;
+        }
+        
+
         if (!CanInteractByTime())
         {
             textRecolectar.SetActive(false);
@@ -122,8 +137,17 @@ public class InteractableResources : MonoBehaviour
 
         if (!playerEnergy.ConsumeEnergy(energyCost))
         {
-            AudioManager.Instance.PlaySFX("no");
+            showingInsufficient = true;
+
             Debug.Log("Energía insuficiente");
+
+            insufficientMat.SetActive(true);
+            textRecolectar.SetActive(false);
+            textCooldown.SetActive(false);
+
+            CancelInvoke(nameof(ResetUI));
+            Invoke(nameof(ResetUI), 2f);
+
             return;
         }
 
@@ -135,7 +159,26 @@ public class InteractableResources : MonoBehaviour
         isAvailable = false;
         cooldownTimer = cooldownTime;
 
+        UpdateModel();
         UpdateUI();
+    }
+
+    void ResetUI()
+    {
+        showingInsufficient = false;
+        insufficientMat.SetActive(false);
+        UpdateUI();
+    }
+
+    
+
+    private void UpdateModel()
+    {
+        if (modeloDisponible == null || modeloUsado == null)
+            return;
+
+        modeloDisponible.SetActive(isAvailable);
+        modeloUsado.SetActive(!isAvailable);
     }
 
     private bool CanInteractByTime()

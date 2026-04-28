@@ -1,27 +1,28 @@
-using System;
-using NUnit.Framework;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMove2 : MonoBehaviour
 {
-    
     public float speed;
     public float rotationSpeed;
     public float attackDuration = 1f;
+
     [SerializeField] private Transform visual;
-    
-
-    private Vector3 forward, right;
-    public Camera cam;
-
-    private Vector3 lastMoveDirection;
-    
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask groundMask;
-    
+
+    public Camera cam;
+
+    private CharacterController characterController;
+
+    [Header("Gravity")]
+    [SerializeField] private float gravity = -20f;
+    [SerializeField] private float verticalVelocity;
+
+    private Vector3 forward;
+    private Vector3 right;
+    private Vector3 lastMoveDirection;
 
     private InputAction moveAction;
     private InputAction attackAction;
@@ -29,24 +30,39 @@ public class PlayerMove2 : MonoBehaviour
     [SerializeField] private bool isAttacking;
     private bool enemyInRange;
 
-
-
     [Header("Footsteps")]
     [SerializeField] private AudioSource footstepSource;
     [SerializeField] private AudioClip[] footstepClips;
     [SerializeField] private float stepInterval = 0.35f;
     [SerializeField] private float footstepVolume = 0.7f;
 
+    [Header("Weapon")]
+    [SerializeField] private WeaponLogic weaponLogic;
+
+    //[SerializeField] private Collider weaponCollider;
+    [SerializeField] private float attackHitDelay = 0.2f;
+    [SerializeField] private float attackHitDuration = 0.25f;
+
+    
+
+
+
+
+
+
     private float stepTimer;
+
     void Awake()
     {
+        characterController = GetComponent<CharacterController>();
+
         moveAction = playerInput.actions["Move"];
         attackAction = playerInput.actions["Attack"];
-            
-        
     }
+
     void Start()
     {
+
         forward = cam.transform.forward;
         forward.y = 0;
         forward = Vector3.Normalize(forward);
@@ -54,75 +70,83 @@ public class PlayerMove2 : MonoBehaviour
         right = cam.transform.right;
         right.y = 0;
         right = Vector3.Normalize(right);
+
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(isAttacking)
-        return;
+        if (isAttacking)
+            return;
 
         if (attackAction.WasPressedThisFrame())
-    {
-        Debug.Log("Se presionó Attack");
-
-        if (enemyInRange)
         {
-            Debug.Log("Hay enemigo en rango, inicia ataque");
-            StartAttack();
-            return;
+            Debug.Log("Se presionó Attack");
+
+            if (enemyInRange)
+            {
+                //Debug.Log("Hay enemigo en rango, inicia ataque");
+                StartAttack();
+                return;
+            }
+            else
+            {
+                //Debug.Log("No hay enemigo en rango");
+            }
         }
-        else
-        {
-            Debug.Log("No hay enemigo en rango");
-        }
-    }
 
-    if (!isAttacking)
-        {
-            Vector2 input = moveAction.ReadValue<Vector2>();
-            HandleFootsteps(input);
-            Vector3 direction = right * input.x + forward * input.y;
+        Vector2 input = moveAction.ReadValue<Vector2>();
 
-            if (direction.magnitude > 1f)
+        HandleFootsteps(input);
+
+        Vector3 direction = right * input.x + forward * input.y;
+
+        if (direction.magnitude > 1f)
             direction.Normalize();
 
-            if (direction.magnitude > 0.1f)
-            {
-                //para evitar que vaya mas rapido o mas lento segun el frame rate
-                transform.position += direction * speed * Time.deltaTime;
-
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                visual.rotation = Quaternion.Slerp(visual.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                lastMoveDirection = direction;
-        
-            }
-
-            Animations(input);
+        // Gravedad para que el CharacterController se mantenga pegado al suelo
+        if (characterController.isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f;
         }
 
-            
-        
-    
-    }
+        verticalVelocity += gravity * Time.deltaTime;
 
- 
+        Vector3 finalMovement = direction * speed;
+        finalMovement.y = verticalVelocity;
+
+        characterController.Move(finalMovement * Time.deltaTime);
+
+        if (direction.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            visual.rotation = Quaternion.Slerp(
+                visual.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+
+            lastMoveDirection = direction;
+        }
+
+        Animations(input);
+    }
+    
 
     private void Animations(Vector2 input)
     {
         if (input.sqrMagnitude < 0.01f)
         {
-            // No hay input → Idle
             animator.SetFloat("MoveAmount", 0f, 0.1f, Time.deltaTime);
         }
         else
         {
-            // Hay input → Run
             animator.SetFloat("MoveAmount", 1f, 0.1f, Time.deltaTime);
         }
     }
 
-    private void StartAttack ()
+    private void StartAttack()
     {
         RotateToMouse();
         isAttacking = true;
@@ -130,8 +154,20 @@ public class PlayerMove2 : MonoBehaviour
         animator.SetFloat("MoveAmount", 0f);
         animator.SetTrigger("Attack");
 
+
+        // Activa el daño 0.2 segundos después de iniciar la animación
+        Invoke(nameof(EnableWeaponCollider), attackHitDelay);
+
+        // Lo desactiva después de la ventana de golpe
+        Invoke(nameof(DisableWeaponCollider), attackHitDelay + attackHitDuration);
+
+        // Termina el ataque completo
         Invoke(nameof(EndAttack), attackDuration);
-        AudioManager.Instance.PlaySFX("PlayerAttack");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("PlayerAttack");
+        }
     }
 
     private void RotateToMouse()
@@ -141,8 +177,6 @@ public class PlayerMove2 : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
         {
-            Debug.Log("Click en suelo: " + hit.point);
-
             Vector3 targetPoint = hit.point;
             Vector3 direction = targetPoint - transform.position;
             direction.y = 0f;
@@ -151,11 +185,7 @@ public class PlayerMove2 : MonoBehaviour
                 return;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            // Giro instantáneo para probar
             visual.rotation = targetRotation;
-
-            Debug.Log("Giró hacia: " + direction);
         }
         else
         {
@@ -163,9 +193,28 @@ public class PlayerMove2 : MonoBehaviour
         }
     }
 
+    public void EnableWeaponCollider()
+    {
+        if (weaponLogic != null)
+        {
+            weaponLogic.EnableWeaponCollider();
+            Debug.Log("Collider del arma ACTIVADO");
+        }
+    }
+
+    public void DisableWeaponCollider()
+    {
+        if (weaponLogic != null)
+        {
+            weaponLogic.DisableWeaponCollider();
+            Debug.Log("Collider del arma DESACTIVADO");
+        }
+    }
+
     private void EndAttack()
     {
-        isAttacking = false;  
+        DisableWeaponCollider();
+        isAttacking = false;
     }
 
     public void SetEnemyInRange(bool value)
@@ -191,18 +240,20 @@ public class PlayerMove2 : MonoBehaviour
             PlayFootstep();
             stepTimer = 0f;
         }
-}
+    }
 
     private void PlayFootstep()
     {
         if (footstepClips == null || footstepClips.Length == 0)
             return;
 
-        int index = UnityEngine.Random.Range(0, footstepClips.Length);
+        if (footstepSource == null)
+            return;
+
+        int index = Random.Range(0, footstepClips.Length);
         AudioClip clip = footstepClips[index];
 
-        footstepSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+        footstepSource.pitch = Random.Range(0.95f, 1.05f);
         footstepSource.PlayOneShot(clip, footstepVolume);
     }
-
 }
