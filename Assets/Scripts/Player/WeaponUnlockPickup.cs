@@ -1,31 +1,38 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using Unity.VisualScripting;
 
 public class WeaponUnlockPickup : MonoBehaviour
 {
     [SerializeField] private int weaponIndex;
-    [SerializeField] private GameObject textInteract;
-    [SerializeField] private GameObject weaponPickupObject; // El objeto del bate en la escena
+
+    [Header("Textos")]
+    [SerializeField] private GameObject textCanUnlock;
+    //[SerializeField] private GameObject textNeedEnergy;
+    [SerializeField] private TMP_Text energyText;
 
     private WeaponLogic weaponLogic;
     private bool playerInRange = false;
-    private PlayerInput playerInput;
-
+    
     private void Start()
     {
-        if (textInteract != null)
-            textInteract.SetActive(false);
+        if (energyText != null)
+            energyText.gameObject.SetActive(false);
+
+        HideTexts();
     }
 
     private void Update()
     {
-        // Detectar presión de E cuando el jugador está en rango
-        if (playerInRange && playerInput != null)
+        if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (Keyboard.current.eKey.wasPressedThisFrame)
-            {
-                TryUnlockWeapon();
-            }
+            TryUnlockWeapon();
+        }
+
+        if (playerInRange)
+        {
+            UpdateTexts();
         }
     }
 
@@ -35,11 +42,8 @@ public class WeaponUnlockPickup : MonoBehaviour
         {
             weaponLogic.UnlockWeapon(weaponIndex);
 
-            if (textInteract != null)
-                textInteract.SetActive(false);
-
-            gameObject.SetActive(false); // ← suficiente
-
+            HideTexts();
+            gameObject.SetActive(false);
         }
         else
         {
@@ -52,21 +56,13 @@ public class WeaponUnlockPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             weaponLogic = other.GetComponent<WeaponLogic>();
-            playerInput = other.GetComponent<PlayerInput>();
+            playerInRange = true;
 
-            if (weaponLogic != null)
-            {
-                if (weaponLogic.CanUnlockWeapon(weaponIndex))
-                {
-                    if (textInteract != null)
-                        textInteract.SetActive(true);
-                    playerInRange = true;
-                }
-                else
-                {
-                    Debug.Log("No puedes desbloquear esta arma todavía");
-                }
-            }
+            // 🔥 ACTIVAR texto de energía
+            if (energyText != null)
+                energyText.gameObject.SetActive(true);
+
+            UpdateTexts(); // para que muestre 3 / 5 por ejemplo
         }
     }
 
@@ -74,10 +70,45 @@ public class WeaponUnlockPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (textInteract != null)
-                textInteract.SetActive(false);
             playerInRange = false;
-            playerInput = null;
+            weaponLogic = null;
+
+            // 🔥 DESACTIVAR texto
+            if (energyText != null)
+                energyText.gameObject.SetActive(false);
+
+            HideTexts();
         }
+    }
+
+    private void UpdateTexts()
+    {
+        if (weaponLogic == null) return;
+
+        bool canUnlock = weaponLogic.CanUnlockWeapon(weaponIndex);
+
+        if (textCanUnlock != null)
+            textCanUnlock.SetActive(canUnlock);
+
+
+        if (!canUnlock && energyText != null)
+        {
+            PlayerEnergy playerEnergy = weaponLogic.GetComponent<PlayerEnergy>();
+
+            if (playerEnergy != null)
+            {
+                int requiredEnergy = weaponLogic.GetWeaponCost(weaponIndex);
+                energyText.text = playerEnergy.currentEnergy + " / " + requiredEnergy;
+            }
+        }
+    }
+
+    private void HideTexts()
+    {
+        if (textCanUnlock != null)
+            textCanUnlock.SetActive(false);
+
+        if (energyText != null)
+            energyText.gameObject.SetActive(false);
     }
 }

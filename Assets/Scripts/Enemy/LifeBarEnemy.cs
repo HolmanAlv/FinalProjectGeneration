@@ -85,19 +85,33 @@ public class LifeBarEnemy : MonoBehaviour
     public void RecibirDaño(int damage)
     {
         if (!puedeRecibirDaño) return;
-        
+
         puedeRecibirDaño = false;
 
-        /*if (enemyBehaviour != null && enemyBehaviour.anim != null) 
-        {
-            enemyBehaviour.anim.SetTrigger("Damage");
-        }*/
-
-        
         currentHelth -= damage;
+        currentHelth = Mathf.Clamp(currentHelth, 0, maxHelth);
+
+        if (lifeBar != null)
+        {
+            lifeBar.fillAmount = currentHelth / maxHelth;
+        }
+
         Debug.Log("Vida enemigo: " + currentHelth);
 
         Invoke(nameof(ResetDaño), 0.75f);
+    }
+
+    public void SetMaxHealth(float newMaxHealth)
+    {
+        maxHelth = newMaxHealth;
+        currentHelth = maxHelth;
+
+        if (lifeBar != null)
+        {
+            lifeBar.fillAmount = 1f;
+        }
+
+        Debug.Log("Vida máxima del enemigo asignada: " + maxHelth);
     }
 
     private void ResetDaño()

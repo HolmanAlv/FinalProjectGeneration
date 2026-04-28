@@ -125,35 +125,32 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (lifeBarEnemy == null)
             {
-                Debug.LogError("lifeBarEnemy no está asignado en " + gameObject.name);
+                Debug.LogError("LifeBarEnemy no asignado en " + gameObject.name);
                 return;
             }
 
-            if (!lifeBarEnemy.puedeRecibirDaño) return;
+            if (!lifeBarEnemy.puedeRecibirDaño)
+                return;
 
             WeaponLogic weaponLogic = other.GetComponentInParent<WeaponLogic>();
 
             if (weaponLogic == null)
             {
-                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-                if (playerObj != null)
-                {
-                    weaponLogic = playerObj.GetComponent<WeaponLogic>();
-                }
+                Debug.LogWarning("No se encontró WeaponLogic");
+                return;
             }
 
-            Debug.Log("Enemy detectó trigger con: " + other.name);
-
-            if (weaponLogic != null)
+            // 🔊 AQUÍ VA EL AUDIO
+            if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX("EnemyHit");
-                Debug.Log("Daño aplicado: " + weaponLogic.CurrentDamage);
-                lifeBarEnemy.RecibirDaño(weaponLogic.CurrentDamage);
             }
-            else
-            {
-                Debug.LogWarning("No se encontró WeaponLogic");
-            }
+
+            int damageFinal = weaponLogic.CurrentDamage;
+
+            Debug.Log("Daño recibido por enemigo: " + damageFinal);
+
+            lifeBarEnemy.RecibirDaño(damageFinal);
         }
     }
 

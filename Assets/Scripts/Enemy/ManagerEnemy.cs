@@ -30,7 +30,10 @@ public class ManagerEnemy : MonoBehaviour
     public int maxEnemies = 10;
     public float enemySpeed = 4f;
     public float spawnInterval = 2f;
-    public int weaponDamage = 100;
+    //public int weaponDamage = 100;
+
+    public float enemyMaxHealth = 25f;
+    public float topeMaxEnemyHealth = 200f;
 
     #endregion
 
@@ -65,6 +68,9 @@ public class ManagerEnemy : MonoBehaviour
 
     [SerializeField]
     private float incrementoSpeedAnim = 0.2f;
+
+    [SerializeField] 
+    private float incrementoEnemyHealth = 10f;
 
     #endregion
     // Variables privadas
@@ -132,7 +138,13 @@ public class ManagerEnemy : MonoBehaviour
         if (behaviour != null)
         {
             behaviour.anim.speed = speedAnim;
-            behaviour.dañoArma = weaponDamage;
+        }
+
+        LifeBarEnemy lifeBar = newEnemy.GetComponentInChildren<LifeBarEnemy>();
+
+        if (lifeBar != null)
+        {
+            lifeBar.SetMaxHealth(enemyMaxHealth);
         }
     }
 
@@ -284,7 +296,8 @@ public class ManagerEnemy : MonoBehaviour
         AumentarLimiteEnemigos();
         AumentarVelocidadEnemigos();
         ReducirTiempoSpawn();
-        ReducirDañoArma();
+        AumentarVidaEnemigos();
+        
     }
 
     #endregion
@@ -292,7 +305,7 @@ public class ManagerEnemy : MonoBehaviour
     #region Reducir daño del arma
 
     [ContextMenu("▼ Reducir Daño del Arma")]
-    public void ReducirDañoArma()
+    /*public void ReducirDañoArma()
     {
         int anterior = weaponDamage;
         int restar = Mathf.RoundToInt(Mathf.Abs(incrementoDamage));
@@ -305,6 +318,39 @@ public class ManagerEnemy : MonoBehaviour
 
         // Actualizar daño en todos los enemigos existentes
         UpdateAllEnemiesDamage();
+    }*/
+
+    [ContextMenu("▲ Aumentar Vida de Enemigos")]
+    public void AumentarVidaEnemigos()
+    {
+        float anterior = enemyMaxHealth;
+
+        enemyMaxHealth = Mathf.Min(
+            enemyMaxHealth + incrementoEnemyHealth,
+            topeMaxEnemyHealth
+        );
+
+        incrementoEnemyHealth *= factorReduccion;
+
+        Debug.Log($"Vida enemigos: {anterior} → {enemyMaxHealth}");
+
+        UpdateAllEnemiesHealth();
+    }
+
+
+        void UpdateAllEnemiesHealth()
+    {
+        enemiesList.RemoveAll(enemy => enemy == null);
+
+        foreach (GameObject enemy in enemiesList)
+        {
+            LifeBarEnemy lifeBar = enemy.GetComponentInChildren<LifeBarEnemy>();
+
+            if (lifeBar != null)
+            {
+                lifeBar.SetMaxHealth(enemyMaxHealth);
+            }
+        }
     }
 
     #endregion
@@ -320,10 +366,7 @@ public class ManagerEnemy : MonoBehaviour
             if (enemy != null)
             {
                 EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
-                if (behaviour != null)
-                {
-                    behaviour.dañoArma = weaponDamage;
-                }
+
             }
         }
     }
@@ -388,15 +431,17 @@ public class ManagerEnemy : MonoBehaviour
         maxEnemies = 10;
         enemySpeed = 4f;
         spawnInterval = 2f;
-        weaponDamage = 100;
+
+        enemyMaxHealth = 25f;
+
         incrementoEnemies = 14f;
         incrementoSpeed = 1.5f;
         incrementoSpawn = -0.3f;
-        incrementoDamage = -20f;
-        UpdateAllEnemiesSpeed();
-        UpdateAllEnemiesDamage();
-    }
+        incrementoEnemyHealth = 10f;
 
+        UpdateAllEnemiesSpeed();
+        UpdateAllEnemiesHealth();
+    }
     #endregion
 
 

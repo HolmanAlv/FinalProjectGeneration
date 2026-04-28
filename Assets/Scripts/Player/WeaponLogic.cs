@@ -145,6 +145,16 @@ public class WeaponLogic : MonoBehaviour
 
         return true;
     }
+    public int GetWeaponCost(int weaponIndex)
+    {
+        if (weaponIndex < 0 || weaponIndex >= weapons.Length)
+        {
+            Debug.LogWarning("Índice de arma inválido");
+            return 0;
+        }
+
+    return weapons[weaponIndex].costToUnlock;
+}
 
     public void UnlockWeapon(int weaponIndex)
     {
