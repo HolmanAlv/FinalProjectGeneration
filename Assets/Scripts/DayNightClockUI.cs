@@ -17,7 +17,6 @@ public class DayNightClockUI : MonoBehaviour
 
     private void Start()
     {
-
         dayNightManager = DayNiightManager.Instance;
 
         if (dayNightManager == null)
@@ -34,8 +33,16 @@ public class DayNightClockUI : MonoBehaviour
             currentZRotation = 0f;
             arrow.localRotation = Quaternion.Euler(0f, 0f, currentZRotation);
         }
+        else
+        {
+            Debug.LogError("No asignaste la flecha en el Inspector");
+            return;
+        }
 
         Debug.Log("Reloj conectado al DayNightManager");
+
+        // IMPORTANTE: iniciar la rotación al cargar la escena
+        HandleDayStarted();
     }
 
     private void OnDestroy()
