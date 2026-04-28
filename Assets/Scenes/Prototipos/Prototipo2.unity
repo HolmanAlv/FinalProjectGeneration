@@ -1580,9 +1580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNiightManager
   currentState: 0
   transitionToNightDuration: 3
-  nightDuration: 45
-  dayDuration: 60
-  transitionToDayDuration: 10
+  nightDuration: 20
+  dayDuration: 20
+  transitionToDayDuration: 5
   directionalLight: {fileID: 1574983986}
   dayLightIntensity: 1.2
   dayLightColor: {r: 1, g: 0.95, b: 0.84, a: 1}
@@ -1593,6 +1593,7 @@ MonoBehaviour:
   nightLights: []
   currentNightNumber: 0
   completedNights: 1
+  managerData: {fileID: 0}
   uIManager: {fileID: 1783490076}
 --- !u!4 &55708952
 Transform:
@@ -9826,6 +9827,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9, y: 6.97339, z: 2.0046961}
   m_Center: {x: -1.2551436e-11, y: 3.5968866, z: -0.017162655}
+--- !u!114 &490741391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 904037055140105301, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
+  m_PrefabInstance: {fileID: 1620570188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &502960449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10385,7 +10397,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 268, y: 10}
-  m_SizeDelta: {x: 50.02, y: 30}
+  m_SizeDelta: {x: 36.1, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531787052
 MonoBehaviour:
@@ -12060,7 +12072,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2, y: 13}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 38.6, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &655250901
 MonoBehaviour:
@@ -37668,6 +37680,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3316333310943614830, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
+      propertyPath: sliderMusica
+      value: 
+      objectReference: {fileID: 490741391}
+    - target: {fileID: 3316333310943614830, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
       propertyPath: contenedorMenuPausa
       value: 
       objectReference: {fileID: 1789095451}
@@ -41511,8 +41527,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.48333332, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267, y: 11}
-  m_SizeDelta: {x: 13.299999, y: 30}
+  m_AnchoredPosition: {x: -269.125, y: 11}
+  m_SizeDelta: {x: 9.049969, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849591620
 MonoBehaviour:
@@ -51304,6 +51320,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2745989350578331866, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 7552752824554454690, guid: 07efaf613d4466b48b6fa6f8c257bf53, type: 2}
     - target: {fileID: 3005722815278357125, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_Name
       value: Player
