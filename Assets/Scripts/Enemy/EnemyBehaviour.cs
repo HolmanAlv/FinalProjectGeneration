@@ -50,6 +50,17 @@ public class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         FindObjects();
+
+        if (lifeBarEnemy == null)
+        {
+            lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>();
+        }
+
+        if (lifeBarEnemy == null)
+        {
+            Debug.LogError("No se encontró LifeBarEnemy en este enemigo o sus hijos");
+        }
+
     }
 
     void Start()
@@ -110,11 +121,36 @@ public class EnemyBehaviour : MonoBehaviour
             collisionPlayer = true;
             //if (agent != null) agent.isStopped = true;
         }
-        if (other.CompareTag("Arma") && lifeBarEnemy.puedeRecibirDaño)
+        if (other.CompareTag("Arma"))
         {
-            AudioManager.Instance.PlaySFX("EnemyHit");
-            Debug.Log("Orale cocazo");
-            lifeBarEnemy.RecibirDaño();
+            if (lifeBarEnemy == null)
+            {
+                Debug.LogError("LifeBarEnemy no asignado en " + gameObject.name);
+                return;
+            }
+
+            if (!lifeBarEnemy.puedeRecibirDaño)
+                return;
+
+            WeaponLogic weaponLogic = other.GetComponentInParent<WeaponLogic>();
+
+            if (weaponLogic == null)
+            {
+                Debug.LogWarning("No se encontró WeaponLogic");
+                return;
+            }
+
+            // 🔊 AQUÍ VA EL AUDIO
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX("EnemyHit");
+            }
+
+            int damageFinal = weaponLogic.CurrentDamage;
+
+            Debug.Log("Daño recibido por enemigo: " + damageFinal);
+
+            lifeBarEnemy.RecibirDaño(damageFinal);
         }
     }
 

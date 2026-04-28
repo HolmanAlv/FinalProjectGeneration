@@ -205,11 +205,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.2
+  m_Radius: 1.65
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7584254061545019803
 MonoBehaviour:
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c0a992dcf1164191089587699a281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerBehaviour
+  energyAmount: 1
 --- !u!1 &3310831721001639759
 GameObject:
   m_ObjectHideFlags: 0
