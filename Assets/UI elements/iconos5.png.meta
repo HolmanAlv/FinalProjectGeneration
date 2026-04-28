@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ef4d466a87972542b4201bf3f37effe
+guid: 23771cb0d3e7c7a45a471c3cbb9596d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iconos3_0
+      name: iconos5_0
       rect:
         serializedVersion: 2
-        x: 323
-        y: 364
-        width: 369
-        height: 353
+        x: 335
+        y: 289
+        width: 511
+        height: 501
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96b0591c83697cf4181d035f18b11635
-      internalID: 1183879401
+      spriteID: 3f683bda1b4c88f4c8e55d869fc0abdd
+      internalID: -576182845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: iconos3_1
+      name: iconos5_1
       rect:
         serializedVersion: 2
-        x: 798
-        y: 371
-        width: 354
-        height: 349
+        x: 1075
+        y: 295
+        width: 521
+        height: 493
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,30 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 974c8817eb8fe05449b80410f7529c5e
-      internalID: -86957520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iconos3_2
-      rect:
-        serializedVersion: 2
-        x: 1254
-        y: 374
-        width: 345
-        height: 346
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13d06bf57bd369b4a940a53b20f2b658
-      internalID: 786129018
+      spriteID: 2bfe9bf3dd380f8468feb51990aa4a34
+      internalID: 1349345152
       vertices: []
       indices: 
       edges: []
@@ -192,7 +170,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4c137a2cac4ca754eb633d86cab13dce
+    spriteID: 1e4a8e16be6c98d4cac20a4803aa4e9a
     internalID: 0
     vertices: []
     indices: 
@@ -204,9 +182,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      iconos3_0: 1183879401
-      iconos3_1: -86957520
-      iconos3_2: 786129018
+      iconos5_0: -576182845
+      iconos5_1: 1349345152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

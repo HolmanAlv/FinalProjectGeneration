@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ef4d466a87972542b4201bf3f37effe
+guid: 5a8c8a3ce47a5e74f90c5d3170ed1924
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iconos3_0
+      name: iconos4_0
       rect:
         serializedVersion: 2
-        x: 323
-        y: 364
-        width: 369
-        height: 353
+        x: 108
+        y: 318
+        width: 498
+        height: 470
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96b0591c83697cf4181d035f18b11635
-      internalID: 1183879401
+      spriteID: 331356523b973b842a798daf865b1da1
+      internalID: 196763670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: iconos3_1
+      name: iconos4_1
       rect:
         serializedVersion: 2
-        x: 798
-        y: 371
-        width: 354
-        height: 349
+        x: 718
+        y: 318
+        width: 498
+        height: 470
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 974c8817eb8fe05449b80410f7529c5e
-      internalID: -86957520
+      spriteID: 76e3eb14e7559354695a34bd44de1b2c
+      internalID: -1267328273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: iconos3_2
+      name: iconos4_2
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 374
-        width: 345
-        height: 346
+        x: 1318
+        y: 323
+        width: 492
+        height: 466
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13d06bf57bd369b4a940a53b20f2b658
-      internalID: 786129018
+      spriteID: a844ced713c25fb478c35dc83db81b3e
+      internalID: 471082883
       vertices: []
       indices: 
       edges: []
@@ -192,7 +192,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4c137a2cac4ca754eb633d86cab13dce
+    spriteID: 1b1149c2a10be764786cb1257432c412
     internalID: 0
     vertices: []
     indices: 
@@ -204,9 +204,9 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      iconos3_0: 1183879401
-      iconos3_1: -86957520
-      iconos3_2: 786129018
+      iconos4_0: 196763670
+      iconos4_1: -1267328273
+      iconos4_2: 471082883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
