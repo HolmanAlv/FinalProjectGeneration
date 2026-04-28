@@ -52,6 +52,7 @@ public class DayNiightManager : MonoBehaviour
     public int currentNightNumber = 0;
     public int completedNights = 0;
 
+
     // variable publicas pero no para edición
     public int CurrentNightNumber => currentNightNumber;
     public int CompletedNights => completedNights;   
@@ -63,6 +64,7 @@ public class DayNiightManager : MonoBehaviour
     private Coroutine cycleCoroutine;
 
     public static DayNiightManager Instance;
+    public ManagerData managerData;
 
     public UIManager uIManager;
 
@@ -194,6 +196,7 @@ public class DayNiightManager : MonoBehaviour
             if (uIManager != null)
             {
                 uIManager.UpdateNigth(completedNights);
+                managerData.SaveDataGame();
             }
 
             Debug.Log("☀️ Noches completadas: " + completedNights);
