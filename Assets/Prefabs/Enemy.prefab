@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4602409121680477808}
   - component: {fileID: 343750655802388494}
   m_Layer: 5
-  m_Name: LifeBarEnemy xd
+  m_Name: LifeBarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

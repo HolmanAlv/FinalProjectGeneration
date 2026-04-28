@@ -1580,8 +1580,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNiightManager
   currentState: 0
   transitionToNightDuration: 3
-  nightDuration: 10
-  dayDuration: 10
+  nightDuration: 50
+  dayDuration: 45
   transitionToDayDuration: 5
   directionalLight: {fileID: 1574983986}
   dayLightIntensity: 1.2
@@ -1593,7 +1593,6 @@ MonoBehaviour:
   nightLights: []
   currentNightNumber: 0
   completedNights: 1
-  managerData: {fileID: 1611746962}
   uIManager: {fileID: 1783490076}
 --- !u!4 &55708952
 Transform:
@@ -20643,7 +20642,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1611746963}
   - {fileID: 1429546815}
   - {fileID: 55708952}
   - {fileID: 1760188404}
@@ -37929,62 +37927,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa3ad334571e5fc42bc1dff9ac0853ac, type: 3}
   m_PrefabInstance: {fileID: 1610344788}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1611746961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1611746963}
-  - component: {fileID: 1611746962}
-  m_Layer: 0
-  m_Name: ManagerData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1611746962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611746961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1887ec6dfe3c6ac42b45a33aae839242, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManagerData
-  playerEnergy: {fileID: 2030331729953592028}
-  playerResources: {fileID: 2030331729953592027}
-  dayNiightManager: {fileID: 55708951}
-  structure1: {fileID: 828529654}
-  structureHealth1: {fileID: 828529657}
-  structure2: {fileID: 2129167782}
-  structureHealth2: {fileID: 2129167786}
-  structure3: {fileID: 537004328}
-  structureHealth3: {fileID: 537004332}
-  structure4: {fileID: 2074249342}
-  structureHealth4: {fileID: 2074249346}
-  mainHealth: {fileID: 935920417}
---- !u!4 &1611746963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611746961}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 96.657196, y: -27.39825, z: 30.58881}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 993982573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1613196152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51289,6 +51231,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b26e07b874e8aff49b2ee1f07b34b68d, type: 3}
+      propertyPath: m_TagString
+      value: Arma
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51970,28 +51916,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2030331729953592040}
   m_SourcePrefab: {fileID: 100100000, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
---- !u!114 &2030331729953592027 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3595869618404991261, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
-  m_PrefabInstance: {fileID: 2030331729953592026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030331729953592029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cfa1cf5c8026ba4dae3ba7563536b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerResources
---- !u!114 &2030331729953592028 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8058063870253004923, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
-  m_PrefabInstance: {fileID: 2030331729953592026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030331729953592029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4f399546b66b6e4bb88edc939ff07f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerEnergy
 --- !u!1 &2030331729953592029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3005722815278357125, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}

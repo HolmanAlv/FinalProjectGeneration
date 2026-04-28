@@ -7,14 +7,22 @@ public class MainHealth : MonoBehaviour
 
     public MainHealthUI healthUI;
 
-    public CinematicasManager cinematicasManager;
+    private CinematicasManager cinematicasManager;
 
-    void Start()
+     void Start()
     {
+        cinematicasManager = CinematicasManager.Instance;
+
+        if (cinematicasManager == null)
+        {
+            Debug.LogError("CinematicasManager no encontrado en la escena");
+        }
+
         if (NewOrLoad.Instance == null || !NewOrLoad.Instance.loadGame)
         {
-           currentHealth = maxHealth;
+            currentHealth = maxHealth;
         }
+
         if (healthUI != null)
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
@@ -24,6 +32,8 @@ public class MainHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
         if (healthUI != null)
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
@@ -35,7 +45,6 @@ public class MainHealth : MonoBehaviour
         {
             GameOver();
         }
-
     }
 
     public void RestoreHealth(float amount)
@@ -53,6 +62,14 @@ public class MainHealth : MonoBehaviour
 
     void GameOver()
     {
-        cinematicasManager.GameOver = true;
+        if (cinematicasManager != null)
+        {
+            cinematicasManager.GameOver = true;
+        }
+        else
+        {
+            Debug.LogError("No se puede hacer GameOver porque cinematicasManager es null");
+        }
     }
+
 }

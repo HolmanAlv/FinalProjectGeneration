@@ -64,7 +64,7 @@ public class DayNiightManager : MonoBehaviour
     private Coroutine cycleCoroutine;
 
     public static DayNiightManager Instance;
-    public ManagerData managerData;
+    //public ManagerData managerData;
 
     public UIManager uIManager;
 
@@ -196,7 +196,7 @@ public class DayNiightManager : MonoBehaviour
             if (uIManager != null)
             {
                 uIManager.UpdateNigth(completedNights);
-                managerData.SaveDataGame();
+                //managerData.SaveDataGame();
             }
 
             Debug.Log("☀️ Noches completadas: " + completedNights);

@@ -53,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (lifeBarEnemy == null)
         {
-            lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>();
+            lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>(true); // permite buscar en hijos desactivados
         }
 
         if (lifeBarEnemy == null)
@@ -125,7 +125,12 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (lifeBarEnemy == null)
             {
-                Debug.LogError("LifeBarEnemy no asignado en " + gameObject.name);
+                lifeBarEnemy = GetComponentInChildren<LifeBarEnemy>(true);
+            }
+
+            if (lifeBarEnemy == null)
+            {
+                Debug.LogWarning("Este enemigo no puede recibir daño porque no tiene LifeBarEnemy: " + gameObject.name);
                 return;
             }
 
@@ -140,7 +145,6 @@ public class EnemyBehaviour : MonoBehaviour
                 return;
             }
 
-            // 🔊 AQUÍ VA EL AUDIO
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX("EnemyHit");

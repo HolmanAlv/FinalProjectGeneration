@@ -1657,17 +1657,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2100178360}
-        m_TargetAssemblyTypeName: OpcionesUI, Assembly-CSharp
-        m_MethodName: AbrirDesdeMenu
-        m_Mode: 1
+      - m_Target: {fileID: 1808628758}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1207241700
 MonoBehaviour:
@@ -2434,6 +2434,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664812305}
   m_CullTransparentMesh: 1
+--- !u!1 &1808628758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3461245057501057075, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
+  m_PrefabInstance: {fileID: 4546785821317847280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1826237136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,17 +2545,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6984153620176854787, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
   m_PrefabInstance: {fileID: 4546785821317847280}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2100178360 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3316333310943614830, guid: 92d98e98000c3f443b6a1d581480a3ae, type: 3}
-  m_PrefabInstance: {fileID: 4546785821317847280}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6f91d8d9393264fabae13d86a84e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OpcionesUI
 --- !u!1001 &4546785821317847280
 PrefabInstance:
   m_ObjectHideFlags: 0
