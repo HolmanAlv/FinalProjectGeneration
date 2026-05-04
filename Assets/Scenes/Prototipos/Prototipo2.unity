@@ -1581,7 +1581,7 @@ MonoBehaviour:
   currentState: 0
   transitionToNightDuration: 3
   nightDuration: 50
-  dayDuration: 45
+  dayDuration: 40
   transitionToDayDuration: 5
   directionalLight: {fileID: 1574983986}
   dayLightIntensity: 1.2
@@ -3016,9 +3016,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 828529655}
     m_Modifications:
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2.0790012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 16.009998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.859
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.3604996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.394999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047841394402076739, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_text
+      value: 'Reparar
+
+        3 de madera
+
+        1 de piedra'
+      objectReference: {fileID: 0}
     - target: {fileID: 6420014263519875271, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.41761097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2789754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.41761097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8849035990919357199, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_Pivot.x
@@ -8826,9 +8870,27 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2129167783}
     m_Modifications:
+    - target: {fileID: 5047841394402076739, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_text
+      value: 'Reparar
+
+        4 de madera'
+      objectReference: {fileID: 0}
     - target: {fileID: 6420014263519875271, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.44866353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3016356
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.44866353
       objectReference: {fileID: 0}
     - target: {fileID: 8849035990919357199, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_Pivot.x
@@ -10863,9 +10925,9 @@ MonoBehaviour:
   currentHealth: 100
   mainHealth: {fileID: 935920417}
   healthUI: {fileID: 317360530}
-  woodRequired: 1
-  stoneRequired: 0
-  repairAmount: 10
+  woodRequired: 2
+  stoneRequired: 4
+  repairAmount: 8
   repairTextObject: {fileID: 1406494530}
 --- !u!1001 &542480919
 PrefabInstance:
@@ -16980,8 +17042,8 @@ MonoBehaviour:
   currentHealth: 100
   mainHealth: {fileID: 935920417}
   healthUI: {fileID: 1654070350}
-  woodRequired: 1
-  stoneRequired: 0
+  woodRequired: 3
+  stoneRequired: 1
   repairAmount: 10
   repairTextObject: {fileID: 535845719}
 --- !u!65 &828529658
@@ -32898,6 +32960,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2074249343}
     m_Modifications:
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 21.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3019727
       objectReference: {fileID: 0}
@@ -32935,7 +33001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 9
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -32949,9 +33015,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.518
       objectReference: {fileID: 0}
+    - target: {fileID: 5047841394402076739, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_text
+      value: 'Reparar
+
+        3 madera
+
+        2 de piedra'
+      objectReference: {fileID: 0}
     - target: {fileID: 6420014263519875271, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.44587848
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3641683
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.44587848
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8849035990919357199, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_Pivot.x
@@ -36393,7 +36491,7 @@ Transform:
   m_GameObject: {fileID: 1524098332}
   serializedVersion: 2
   m_LocalRotation: {x: 0.27781588, y: 0.36497167, z: -0.1150751, w: 0.8811196}
-  m_LocalPosition: {x: 18.9, y: 11.12, z: 45.4}
+  m_LocalPosition: {x: -9.6, y: 11.12, z: -2.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39272,6 +39370,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 537004329}
     m_Modifications:
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14.999982
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20829515
       objectReference: {fileID: 0}
@@ -39301,15 +39403,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 21.99999
+      value: 17.9
       objectReference: {fileID: 0}
     - target: {fileID: 4989412698709689920, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -191.541
       objectReference: {fileID: 0}
+    - target: {fileID: 5047841394402076739, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_text
+      value: 'Reparar
+
+        2 de madera
+
+        4 de piedra'
+      objectReference: {fileID: 0}
     - target: {fileID: 6420014263519875271, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.42204776
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2450101
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.42204776
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605236072126562386, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8849035990919357199, guid: 83e2131fac07145498ae05240081f2f3, type: 3}
       propertyPath: m_Pivot.x
@@ -50225,8 +50351,8 @@ MonoBehaviour:
   currentHealth: 100
   mainHealth: {fileID: 935920417}
   healthUI: {fileID: 2118918297}
-  woodRequired: 1
-  stoneRequired: 0
+  woodRequired: 3
+  stoneRequired: 2
   repairAmount: 10
   repairTextObject: {fileID: 162978619}
 --- !u!1 &2081122550
@@ -51344,7 +51470,7 @@ MonoBehaviour:
   currentHealth: 100
   mainHealth: {fileID: 935920417}
   healthUI: {fileID: 1127638584}
-  woodRequired: 1
+  woodRequired: 4
   stoneRequired: 0
   repairAmount: 10
   repairTextObject: {fileID: 2054370491}
@@ -51803,7 +51929,7 @@ PrefabInstance:
       objectReference: {fileID: 1524098336}
     - target: {fileID: 5536024553117135869, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.9
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 5536024553117135869, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -51811,7 +51937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5536024553117135869, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57.4
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 5536024553117135869, guid: deb50c0a4063329428b6562c80cb75c5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51939,7 +52065,7 @@ MonoBehaviour:
     costToUnlock: 0
   - weaponObject: {fileID: 2126248065}
     damage: 50
-    costToUnlock: 10
+    costToUnlock: 20
   currentWeaponIndex: 0
 --- !u!4 &3794711781897084602
 Transform:
@@ -51950,7 +52076,7 @@ Transform:
   m_GameObject: {fileID: 122536451863995309}
   serializedVersion: 2
   m_LocalRotation: {x: 0.27781588, y: 0.36497167, z: -0.1150751, w: 0.8811196}
-  m_LocalPosition: {x: 18.9, y: 11.12, z: 45.4}
+  m_LocalPosition: {x: -9.6, y: 11.12, z: -2.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

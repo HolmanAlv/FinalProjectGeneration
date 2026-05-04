@@ -132,7 +132,7 @@ MonoBehaviour:
   resourceType: 1
   energyCost: 1
   resourceAmount: 1
-  cooldownTime: 20
+  cooldownTime: 10
   textRecolectar: {fileID: 3329657946757995129}
   insufficientMat: {fileID: 410350319935982666}
   textCooldown: {fileID: 8960990744495924278}
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Regrese en 20 segundos
+  m_text: Regrese en 10 segundos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

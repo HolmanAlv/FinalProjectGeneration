@@ -50,7 +50,7 @@ MonoBehaviour:
   resourceType: 0
   energyCost: 1
   resourceAmount: 1
-  cooldownTime: 5
+  cooldownTime: 10
   textRecolectar: {fileID: 5390496125825120849}
   insufficientMat: {fileID: 6820525285273810719}
   textCooldown: {fileID: 7262971155855047449}
@@ -207,6 +207,14 @@ PrefabInstance:
     - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588003616778364001, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_text
+      value: Regrese en 10 segundos
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679807131153158177, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
